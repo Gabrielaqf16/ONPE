@@ -1,130 +1,175 @@
 async function cargarDatos() {
-  const res = await fetch('datos.json');
-  const datos = await res.json();
-
-  mostrarGeneral(datos);
-  mostrarOnpe(datos.onpe);
-  mostrarNoOnpe(datos.no_onpe);
+  const response = await fetch("datos.json");
+  const data = await response.json();
+  mostrarColeccionGeneral(data);
+  mostrarColeccionONPE(data);
+  mostrarONPEporAnio(data);
+  mostrarNoONPE(data);
 }
 
-// ---------- GENERAL ----------
-function mostrarGeneral(datos) {
-  const descriptores = datos.descriptores;
-  const clasificacion = datos.clasificación;
-  const cont = document.getElementById("tabla-general");
-
-  cont.innerHTML = `
-    <table>
-      <tr><th>Tipo</th><th>Total</th><th>Clasificados / Indexados</th><th>%</th><th>Barra de progreso</th></tr>
-      <tr>
-        <td>Clasificación</td>
-        <td>${clasificacion.Total_de_registros}</td>
-        <td>${clasificacion.Colección_clasificada}</td>
-        <td>${clasificacion["%_Colección_clasificada"]}%</td>
-        <td>${crearBarra(clasificacion["%_Colección_clasificada"], 'green')}</td>
-      </tr>
-      <tr>
-        <td>Indexación</td>
-        <td>${descriptores.Total_Registros}</td>
-        <td>${descriptores.Colección_indexada}</td>
-        <td>${descriptores["%_Colección_indexada"]}%</td>
-        <td>${crearBarra(descriptores["%_Colección_indexada"], 'blue')}</td>
-      </tr>
-    </table>
+function crearBarra(porcentaje, color) {
+  return `
+    <div class="progress">
+      <div class="bar ${color}" style="width:${porcentaje}%"></div>
+    </div>
   `;
 }
 
-// ---------- ONPE ----------
-function mostrarOnpe(onpe) {
-  const contResumen = document.getElementById("tabla-onpe-resumen");
-  contResumen.innerHTML = `
+function mostrarColeccionGeneral(data) {
+  const general = data;
+  const html = `
     <table>
-      <tr><th>Tipo</th><th>Total</th><th>Completados</th><th>%</th><th>Barra</th></tr>
+      <tr>
+        <th>Tipo</th>
+        <th>Total</th>
+        <th>Clasificados / Indexados</th>
+        <th>%</th>
+        <th>No Clasificados / No Indexados</th>
+        <th>%</th>
+        <th>Barra</th>
+      </tr>
+      <tr>
+        <td>Clasificación</td>
+        <td>${general.clasificación.Total_de_registros}</td>
+        <td>${general.clasificación.Colección_clasificada}</td>
+        <td>${general.clasificación["%_Colección_clasificada"]}%</td>
+        <td>${general.clasificación.Colección_no_clasificada}</td>
+        <td>${general.clasificación["%_Colección_no_clasificada"]}%</td>
+        <td>${crearBarra(general.clasificación["%_Colección_clasificada"], "green")}</td>
+      </tr>
+      <tr>
+        <td>Indexación</td>
+        <td>${general.descriptores.Total_Registros}</td>
+        <td>${general.descriptores.Colección_indexada}</td>
+        <td>${general.descriptores["%_Colección_indexada"]}%</td>
+        <td>${general.descriptores.Colección_no_indexada}</td>
+        <td>${general.descriptores["%_Colección_no_indexada"]}%</td>
+        <td>${crearBarra(general.descriptores["%_Colección_indexada"], "blue")}</td>
+      </tr>
+    </table>
+  `;
+  document.getElementById("tabla-general").innerHTML = html;
+}
+
+function mostrarColeccionONPE(data) {
+  const onpe = data.onpe;
+  const html = `
+    <table>
+      <tr>
+        <th>Tipo</th>
+        <th>Total</th>
+        <th>Completados</th>
+        <th>%</th>
+        <th>No completados</th>
+        <th>%</th>
+        <th>Barra</th>
+      </tr>
       <tr>
         <td>Clasificación</td>
         <td>${onpe.clasificacion.Total_registros}</td>
         <td>${onpe.clasificacion.Registros_Clasificados}</td>
         <td>${onpe.clasificacion["%_Clasificados"]}%</td>
-        <td>${crearBarra(onpe.clasificacion["%_Clasificados"], 'green')}</td>
+        <td>${onpe.clasificacion.Registros_No_Clasificados}</td>
+        <td>${onpe.clasificacion["%_No_Clasificados"]}%</td>
+        <td>${crearBarra(onpe.clasificacion["%_Clasificados"], "green")}</td>
       </tr>
       <tr>
         <td>Indexación</td>
         <td>${onpe.indexacion.Total_registros}</td>
         <td>${onpe.indexacion.Registros_Indexados}</td>
         <td>${onpe.indexacion["%_Indexados"]}%</td>
-        <td>${crearBarra(onpe.indexacion["%_Indexados"], 'blue')}</td>
+        <td>${onpe.indexacion.Registros_No_Indexados}</td>
+        <td>${onpe.indexacion["%_No_Indexados"]}%</td>
+        <td>${crearBarra(onpe.indexacion["%_Indexados"], "blue")}</td>
       </tr>
     </table>
   `;
+  document.getElementById("tabla-onpe").innerHTML = html;
+}
 
-  // Serie por año
-  const contAnos = document.getElementById("tabla-onpe-anos");
-  const filas = onpe.serie_por_ano.map(a => `
+function mostrarONPEporAnio(data) {
+  const serie = data.onpe.serie_por_ano;
+  let filas = serie.map(r => `
     <tr>
-      <td>${a.Año}</td>
-      <td>${a.Total_Registros_ONPE}</td>
-      <td>${a["%_Clasificados"]}% ${crearBarra(a["%_Clasificados"], 'green')}</td>
-      <td>${a["%_Indexados"]}% ${crearBarra(a["%_Indexados"], 'blue')}</td>
+      <td>${r.Año}</td>
+      <td>${r.Total_Registros_ONPE}</td>
+      <td>${r.Clasificados}</td>
+      <td>${r["%_Clasificados"]}%</td>
+      <td>${r.No_Clasificados}</td>
+      <td>${r["%_No_Clasificados"]}%</td>
+      <td>${r.Indexados}</td>
+      <td>${r["%_Indexados"]}%</td>
+      <td>${r.No_Indexados}</td>
+      <td>${r["%_No_Indexados"]}%</td>
+      <td>
+        ${crearBarra(r["%_Clasificados"], "green")}
+        ${crearBarra(r["%_Indexados"], "blue")}
+      </td>
     </tr>
   `).join("");
 
-  contAnos.innerHTML = `
+  const html = `
     <table>
-      <tr><th>Año</th><th>Total</th><th>Clasificación</th><th>Indexación</th></tr>
+      <tr>
+        <th>Año</th>
+        <th>Total</th>
+        <th>Clasificados</th>
+        <th>%</th>
+        <th>No Clasificados</th>
+        <th>%</th>
+        <th>Indexados</th>
+        <th>%</th>
+        <th>No Indexados</th>
+        <th>%</th>
+        <th>Barras</th>
+      </tr>
       ${filas}
     </table>
   `;
+  document.getElementById("tabla-onpe-anual").innerHTML = html;
 }
 
-// ---------- NO ONPE ----------
-function mostrarNoOnpe(noonpe) {
-  const contResumen = document.getElementById("tabla-noonpe-resumen");
-  contResumen.innerHTML = `
-    <table>
-      <tr><th>Tipo</th><th>Total</th><th>Completados</th><th>%</th><th>Barra</th></tr>
-      <tr>
-        <td>Clasificación</td>
-        <td>${noonpe.clasificacion.Total_de_registros}</td>
-        <td>${noonpe.clasificacion.Colección_clasificada}</td>
-        <td>${noonpe.clasificacion["%_Colección_clasificada"]}%</td>
-        <td>${crearBarra(noonpe.clasificacion["%_Colección_clasificada"], 'green')}</td>
-      </tr>
-      <tr>
-        <td>Indexación</td>
-        <td>${noonpe.indexacion.Total_registros}</td>
-        <td>${noonpe.indexacion.Registros_Indexados}</td>
-        <td>${noonpe.indexacion["%_Indexados"]}%</td>
-        <td>${crearBarra(noonpe.indexacion["%_Indexados"], 'blue')}</td>
-      </tr>
-    </table>
-  `;
-
-  // Por instituciones
-  const contInst = document.getElementById("tabla-noonpe-inst");
-  const filas = noonpe.instituciones.map(i => `
+function mostrarNoONPE(data) {
+  const instituciones = data.no_onpe.instituciones;
+  let filas = instituciones.map(i => `
     <tr>
       <td>${i.Institución}</td>
       <td>${i.Total_Registros}</td>
-      <td>${i["%_Clasificados"]}% ${crearBarra(i["%_Clasificados"], 'green')}</td>
-      <td>${i["%_Indexados"]}% ${crearBarra(i["%_Indexados"], 'blue')}</td>
+      <td>${i.Clasificados}</td>
+      <td>${i["%_Clasificados"]}%</td>
+      <td>${i.No_Clasificados}</td>
+      <td>${i["%_No_Clasificados"]}%</td>
+      <td>${i.Indexados}</td>
+      <td>${i["%_Indexados"]}%</td>
+      <td>${i.No_Indexados}</td>
+      <td>${i["%_No_Indexados"]}%</td>
+      <td>
+        ${crearBarra(i["%_Clasificados"], "green")}
+        ${crearBarra(i["%_Indexados"], "blue")}
+      </td>
     </tr>
   `).join("");
 
-  contInst.innerHTML = `
+  const html = `
     <table>
-      <tr><th>Institución</th><th>Total</th><th>Clasificación</th><th>Indexación</th></tr>
+      <tr>
+        <th>Institución</th>
+        <th>Total</th>
+        <th>Clasificados</th>
+        <th>%</th>
+        <th>No Clasificados</th>
+        <th>%</th>
+        <th>Indexados</th>
+        <th>%</th>
+        <th>No Indexados</th>
+        <th>%</th>
+        <th>Barras</th>
+      </tr>
       ${filas}
     </table>
   `;
-}
-
-// ---------- FUNCIÓN AUXILIAR ----------
-function crearBarra(porcentaje, color) {
-  return `
-    <div class="progress-bar">
-      <div class="progress ${color}" style="width:${porcentaje}%;"></div>
-    </div>
-  `;
+  document.getElementById("tabla-no-onpe").innerHTML = html;
 }
 
 cargarDatos();
+
