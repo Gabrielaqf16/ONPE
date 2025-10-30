@@ -1,4 +1,14 @@
+
+
 {
+    "resumen_general": {
+    "Total_de_registros": 6259,
+    "Coleccion_clasificada": 4852,
+    "%_Coleccion_clasificada": 77.52,
+    "Coleccion_no_clasificada": 1407,
+    "%_Coleccion_no_clasificada": 22.48
+  },
+
   "descriptores": {
     "Total_Registros": 6259,
     "Coleccion_indexada": 4103,
@@ -60,14 +70,6 @@
     "pct_indexados": 45.15,
     "registros_no_indexados": 2007,
     "pct_no_indexados": 54.85
-  },
-
-  "resumen_general": {
-    "Total_de_registros": 6259,
-    "Coleccion_clasificada": 4852,
-    "%_Coleccion_clasificada": 77.52,
-    "Coleccion_no_clasificada": 1407,
-    "%_Coleccion_no_clasificada": 22.48
   },
 
   "instituciones": [
