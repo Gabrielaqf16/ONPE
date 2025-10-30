@@ -1,69 +1,93 @@
-/* 🎨 Estilo general */
-body {
+:root{
+  --bg:#f7f9fc;
+  --card:#ffffff;
+  --accent:#1a3c6e;
+  --accent-2:#2b5ca0;
+  --muted:#6b7280;
+  --success:#2b8cff;
+  --danger:#ff6b6b;
+}
+
+*{box-sizing:border-box}
+body{
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f7f9fc;
-  color: #333;
-  margin: 0;
-  padding: 40px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  margin:0;
+  background:var(--bg);
+  color:#222;
+  padding:28px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  min-height:100vh;
 }
 
-/* 🏷️ Títulos */
-h1 {
-  color: #1a3c6e;
-  margin-bottom: 30px;
-  text-align: center;
+header{ text-align:center; margin-bottom:18px; }
+h1{ color:var(--accent); margin:0; font-size:1.8rem; }
+.sub{ color:var(--muted); margin-top:6px; }
+
+#main{ width:100%; max-width:1100px; }
+
+.card{
+  background:var(--card);
+  border-radius:12px;
+  box-shadow:0 6px 18px rgba(20,30,60,0.06);
+  padding:18px;
+  margin:18px 0;
+  overflow:hidden;
 }
 
-h2 {
-  color: #2b5ca0;
-  margin-top: 40px;
-  margin-bottom: 10px;
+.section-title{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  margin-bottom:12px;
+}
+.section-title h2{ margin:0; color:var(--accent-2); font-size:1.1rem; }
+
+.table-wrap{ overflow:auto; }
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:8px;
+  min-width:520px;
+}
+th, td{
+  text-align:center;
+  padding:10px 12px;
+  border-bottom:1px solid #eef2f7;
+  font-size:0.95rem;
+}
+th{
+  background:var(--accent);
+  color:#fff;
+  font-weight:600;
 }
 
-/* 📊 Tablas */
-table {
-  border-collapse: collapse;
-  width: 80%;
-  max-width: 700px;
-  margin: 10px 0 30px 0;
-  background: #fff;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  border-radius: 10px;
-  overflow: hidden;
+tr:nth-child(even) td{ background:#fbfdff; }
+tr:hover td{ background:#f0f6ff; transition:0.18s; }
+
+/* progress bar for percentages */
+.pbar {
+  height:14px;
+  border-radius:10px;
+  background:#e9f0ff;
+  width:100%;
+  overflow:hidden;
+  box-shadow:inset 0 -1px 0 rgba(0,0,0,0.03);
+}
+.pbar > .p { height:100%; border-radius:10px 0 0 10px; background:var(--success); text-align:right; padding-right:6px; color:#fff; font-size:0.75rem; line-height:14px; white-space:nowrap;}
+
+/* small label for percent */
+.percent-label { font-size:0.85rem; color:var(--muted); margin-top:6px; }
+
+/* responsive */
+@media (max-width:700px){
+  body{ padding:16px; }
+  th, td{ padding:8px; font-size:0.85rem; }
+  h1{ font-size:1.4rem; }
 }
 
-/* 🧱 Encabezados de tabla */
-th {
-  background-color: #1a3c6e;
-  color: white;
-  padding: 12px;
-  font-weight: 600;
-}
-
-/* 🔹 Celdas */
-td {
-  padding: 10px;
-  border-bottom: 1px solid #eee;
-}
-
-/* 🔄 Alternancia de filas */
-tr:nth-child(even) {
-  background-color: #f2f5f8;
-}
-
-/* 💡 Efecto hover */
-tr:hover {
-  background-color: #e0ebff;
-  transition: 0.3s;
-}
-
-/* 📱 Responsivo */
-@media (max-width: 600px) {
-  table {
-    width: 100%;
-    font-size: 14px;
-  }
-}
+/* loading/error */
+.loading{ color:var(--muted); text-align:center; margin:24px 0; }
+.error{ color:var(--danger); text-align:center; margin:12px 0; font-weight:600; }
