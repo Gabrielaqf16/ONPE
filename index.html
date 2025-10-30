@@ -1,26 +1,70 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>ONPE - Resultados</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Visualizador — ONPE datos</title>
+
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js" defer></script>
+
+  <link rel="stylesheet" href="styles.css" />
+  <script src="app.js" defer></script>
 </head>
 <body>
-  <header>
-    <h1>Resultados ONPE</h1>
-    <p class="sub">Tablas de indexación y clasificación (visualización desde datos.json)</p>
+  <header class="site-header">
+    <h1>Visualizador de datos — ONPE</h1>
+    <p class="muted">Carga: <code>https://gabrielaqf16.github.io/ONPE/datos.json</code></p>
   </header>
 
-  <main id="main">
-    <div id="contenedor">
-      <p class="loading">Cargando datos...</p>
-    </div>
+  <main class="container">
+    <section class="controls">
+      <div class="control">
+        <label for="search">Buscar (cualquier campo):</label>
+        <input id="search" type="search" placeholder="ej. 1995, Clasificados, Indexados..." />
+      </div>
+
+      <div class="control">
+        <label for="yearFilter">Filtrar por año:</label>
+        <select id="yearFilter">
+          <option value="all">Todos los años</option>
+        </select>
+      </div>
+
+      <div class="control">
+        <button id="downloadCsv">Descargar CSV</button>
+        <button id="reset">Reiniciar filtros</button>
+      </div>
+    </section>
+
+    <section class="summary" id="summary">
+      <!-- resumen dinámico -->
+    </section>
+
+    <section class="chart-card">
+      <h2>Serie por año</h2>
+      <canvas id="serieChart" width="800" height="300" aria-label="Gráfico de serie por año"></canvas>
+    </section>
+
+    <section class="table-card">
+      <h2>Tabla de registros</h2>
+      <div class="table-wrap">
+        <table id="dataTable" class="data-table" aria-live="polite">
+          <thead id="tableHead">
+            <!-- generado dinámicamente -->
+          </thead>
+          <tbody id="tableBody">
+            <!-- generado dinámicamente -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <div id="message" class="message" role="status" aria-live="polite"></div>
   </main>
 
-  <footer>
-    <small>Repositorio: ONPE — Datos estáticos desde datos.json</small>
+  <footer class="site-footer">
+    <small>Creado para mostrar <code>datos.json</code>. Si faltan columnas, el visualizador las detecta automáticamente.</small>
   </footer>
-
-  <script src="app.js"></script>
 </body>
 </html>
