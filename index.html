@@ -3,38 +3,39 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Avance de Colección</title>
+  <title>Colección Documental</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
-    <h1>📚 Avance de la Colección</h1>
-    <p>Clasificación e indexación general, ONPE y No ONPE</p>
+    <h1>📚 Avance de Clasificación e Indexación</h1>
   </header>
 
   <main>
-    <section id="general" class="card">
+    <!-- Colección General -->
+    <section id="coleccion-general">
       <h2>📊 Colección General</h2>
       <div id="tabla-general"></div>
     </section>
 
-    <section id="onpe" class="card">
+    <!-- Colección ONPE -->
+    <section id="coleccion-onpe">
       <h2>🏛️ Colección ONPE</h2>
-      <div id="tabla-onpe-resumen"></div>
-      <h3>📅 Avance por año</h3>
-      <div id="tabla-onpe-anos"></div>
+      <div id="tabla-onpe"></div>
+
+      <h3>🗓️ Avance por año</h3>
+      <div id="tabla-onpe-anual"></div>
     </section>
 
-    <section id="no-onpe" class="card">
+    <!-- Colección NO ONPE -->
+    <section id="coleccion-no-onpe">
       <h2>🏫 Colección NO ONPE</h2>
-      <div id="tabla-noonpe-resumen"></div>
-      <h3>🏢 Avance por institución</h3>
-      <div id="tabla-noonpe-inst"></div>
+      <div id="tabla-no-onpe"></div>
     </section>
   </main>
 
   <footer>
-    <p>© 2025 Oficina Nacional de Procesos Electorales (ONPE)</p>
+    <p>© 2025 Oficina Nacional de Procesos Electorales (ONPE) | Datos de colección documental</p>
   </footer>
 
   <script src="app.js"></script>
