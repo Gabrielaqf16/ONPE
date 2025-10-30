@@ -1,0 +1,16 @@
+{
+  "descriptores": {
+    "Total_Registros": 6259,
+    "Con_Descriptores_6XX": 4103,
+    "%_Con_Descriptores": 65.55,
+    "Sin_Descriptores_6XX": 2156,
+    "%_Sin_Descriptores": 34.45
+  },
+  "clasificacion": {
+    "Coleccion_clasificada": 4852,
+    "%_Coleccion_clasificada": 77.52,
+    "Coleccion_no_clasificada": 1407,
+    "%_Coleccion_no_clasificada": 22.48,
+    "Total_de_registros": 6259
+  }
+}
