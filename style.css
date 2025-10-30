@@ -1,0 +1,69 @@
+/* 🎨 Estilo general */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f7f9fc;
+  color: #333;
+  margin: 0;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 🏷️ Títulos */
+h1 {
+  color: #1a3c6e;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+h2 {
+  color: #2b5ca0;
+  margin-top: 40px;
+  margin-bottom: 10px;
+}
+
+/* 📊 Tablas */
+table {
+  border-collapse: collapse;
+  width: 80%;
+  max-width: 700px;
+  margin: 10px 0 30px 0;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* 🧱 Encabezados de tabla */
+th {
+  background-color: #1a3c6e;
+  color: white;
+  padding: 12px;
+  font-weight: 600;
+}
+
+/* 🔹 Celdas */
+td {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+/* 🔄 Alternancia de filas */
+tr:nth-child(even) {
+  background-color: #f2f5f8;
+}
+
+/* 💡 Efecto hover */
+tr:hover {
+  background-color: #e0ebff;
+  transition: 0.3s;
+}
+
+/* 📱 Responsivo */
+@media (max-width: 600px) {
+  table {
+    width: 100%;
+    font-size: 14px;
+  }
+}
