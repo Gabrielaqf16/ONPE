@@ -5,7 +5,7 @@ fetch('datos.json')
     // --- Tabla 1: Descriptores ---
     const descriptores = data.descriptores;
     let html1 = `
-      <h2>Descriptores 6XX</h2>
+      <h2>Colección Indexada</h2>
       <table border="1">
         <tr>
           <th>Total Registros</th>
