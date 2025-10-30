@@ -1,93 +1,81 @@
 :root{
-  --bg:#f7f9fc;
+  --bg:#f6f8fb;
   --card:#ffffff;
-  --accent:#1a3c6e;
-  --accent-2:#2b5ca0;
   --muted:#6b7280;
-  --success:#2b8cff;
-  --danger:#ff6b6b;
+  --accent:#1f6feb;
+  --glass: rgba(255,255,255,0.7);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
 }
 
 *{box-sizing:border-box}
+html,body{height:100%}
 body{
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin:0;
-  background:var(--bg);
-  color:#222;
-  padding:28px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  min-height:100vh;
+  background:linear-gradient(180deg,#eef2ff 0%,var(--bg) 100%);
+  color:#0f172a;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  padding-bottom:48px;
 }
 
-header{ text-align:center; margin-bottom:18px; }
-h1{ color:var(--accent); margin:0; font-size:1.8rem; }
-.sub{ color:var(--muted); margin-top:6px; }
+.container{
+  max-width:1100px;
+  margin:22px auto;
+  padding:20px;
+}
 
-#main{ width:100%; max-width:1100px; }
+.site-header{
+  text-align:center;
+  padding:18px 12px;
+}
+.site-header h1{margin:0 0 6px;font-size:1.5rem}
+.site-header .muted{color:var(--muted);font-size:.9rem}
 
-.card{
+.controls{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-bottom:12px;
+  align-items:end;
+}
+.control{display:flex;flex-direction:column;gap:6px}
+.control label{font-size:.85rem;color:var(--muted)}
+.control input[type="search"], .control select{
+  padding:8px 10px;border-radius:8px;border:1px solid #e6e9ef;background:var(--card);
+}
+.control button{
+  padding:8px 12px;border-radius:8px;border:0;background:var(--accent);color:white;cursor:pointer;
+}
+.control button:hover{filter:brightness(.95)}
+
+.summary{
   background:var(--card);
   border-radius:12px;
-  box-shadow:0 6px 18px rgba(20,30,60,0.06);
-  padding:18px;
-  margin:18px 0;
-  overflow:hidden;
+  padding:12px;
+  margin-bottom:12px;
+  box-shadow:0 6px 18px rgba(20,30,60,0.05);
 }
+.summary p{margin:0;color:var(--muted)}
 
-.section-title{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:12px;
+.chart-card, .table-card{
+  background:var(--card);
+  padding:12px;
+  border-radius:12px;
+  box-shadow:0 6px 18px rgba(20,30,60,0.04);
   margin-bottom:12px;
 }
-.section-title h2{ margin:0; color:var(--accent-2); font-size:1.1rem; }
 
-.table-wrap{ overflow:auto; }
-table{
-  width:100%;
-  border-collapse:collapse;
-  margin-top:8px;
-  min-width:520px;
+.table-wrap{overflow:auto;max-height:520px}
+.data-table{width:100%;border-collapse:collapse;font-size:.95rem}
+.data-table thead th{
+  position:sticky;top:0;background:#fff;padding:10px;border-bottom:1px solid #eef1f6;text-align:left;font-weight:600;
 }
-th, td{
-  text-align:center;
-  padding:10px 12px;
-  border-bottom:1px solid #eef2f7;
-  font-size:0.95rem;
-}
-th{
-  background:var(--accent);
-  color:#fff;
-  font-weight:600;
-}
+.data-table tbody td{padding:8px 10px;border-bottom:1px solid #f3f6fa}
+.data-table tbody tr:hover{background:#fbfdff}
 
-tr:nth-child(even) td{ background:#fbfdff; }
-tr:hover td{ background:#f0f6ff; transition:0.18s; }
+.message{margin-top:10px;color:var(--muted)}
 
-/* progress bar for percentages */
-.pbar {
-  height:14px;
-  border-radius:10px;
-  background:#e9f0ff;
-  width:100%;
-  overflow:hidden;
-  box-shadow:inset 0 -1px 0 rgba(0,0,0,0.03);
-}
-.pbar > .p { height:100%; border-radius:10px 0 0 10px; background:var(--success); text-align:right; padding-right:6px; color:#fff; font-size:0.75rem; line-height:14px; white-space:nowrap;}
-
-/* small label for percent */
-.percent-label { font-size:0.85rem; color:var(--muted); margin-top:6px; }
-
-/* responsive */
+.site-footer{text-align:center;margin-top:18px;color:var(--muted);font-size:.85rem}
 @media (max-width:700px){
-  body{ padding:16px; }
-  th, td{ padding:8px; font-size:0.85rem; }
-  h1{ font-size:1.4rem; }
+  .controls{flex-direction:column;align-items:stretch}
 }
-
-/* loading/error */
-.loading{ color:var(--muted); text-align:center; margin:24px 0; }
-.error{ color:var(--danger); text-align:center; margin:12px 0; font-weight:600; }
