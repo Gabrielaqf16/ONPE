@@ -75,11 +75,11 @@
       "%_No_Indexados": 54.85
     },
     "clasificacion": {
-      "Total_de_registros": 6259,
-      "Colección_clasificada": 4852,
-      "%_Colección_clasificada": 77.52,
-      "Colección_no_clasificada": 1407,
-      "%_Colección_no_clasificada": 22.48
+      "Total_de_registros": 3659,
+      "Colección_clasificada": 2406,
+      "%_Colección_clasificada": 65.76,
+      "Colección_no_clasificada": 1253,
+      "%_Colección_no_clasificada": 34.24
     },
     "instituciones": [
       {"Institución": "Otras instituciones", "Total_Registros": 3318, "Clasificados": 2082, "%_Clasificados": 62.75, "No_Clasificados": 1236, "%_No_Clasificados": 37.25, "Indexados": 1336, "%_Indexados": 40.27, "No_Indexados": 1982, "%_No_Indexados": 59.73},
