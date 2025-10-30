@@ -2,14 +2,24 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Resultados de la Base de Datos</title>
+  <title>ONPE - Resultados</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Resultados de la Base de Datos</h1>
-  <div id="contenedor">
-    <p>Cargando datos...</p>
-  </div>
+  <header>
+    <h1>Resultados ONPE</h1>
+    <p class="sub">Tablas de indexación y clasificación (visualización desde datos.json)</p>
+  </header>
+
+  <main id="main">
+    <div id="contenedor">
+      <p class="loading">Cargando datos...</p>
+    </div>
+  </main>
+
+  <footer>
+    <small>Repositorio: ONPE — Datos estáticos desde datos.json</small>
+  </footer>
 
   <script src="app.js"></script>
 </body>
