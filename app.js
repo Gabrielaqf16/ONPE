@@ -90,6 +90,7 @@ const dashboardData = {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Estas son las funciones que inyectan los datos en los contenedores
     renderColeccionGeneral();
     renderColeccionOnpe();
     renderColeccionNoOnpe();
@@ -103,24 +104,24 @@ function renderColeccionGeneral() {
     const data = dashboardData;
     const generalContent = document.getElementById('general-content');
 
-    // Total de Registros
-    let html = `<div class="data-item"><strong>Total de Registros:</strong> ${data.descriptores.Total_Registros}</div>`;
-
     // Avance de Indexación
-    html += `
-        <div class="data-item">
-            <strong>Avance de Indexación:</strong>
-            Indexados: ${data.descriptores.Colección_indexada} (<span class="index-ok">${data.descriptores['%_Colección_indexada']}%</span>)
-            | No Indexados: ${data.descriptores.Colección_no_indexada} (<span class="index-pending">${data.descriptores['%_Colección_no_indexada']}%</span>)
-        </div>
-    `;
+    const indexacion = data.descriptores;
+    const clasificacion = data.clasificación;
 
-    // Avance de Clasificación
-    html += `
+    let html = `
+        <h3>Total de Registros</h3>
+        <div class="data-item"><strong>Total de Registros:</strong> ${data.descriptores.Total_Registros}</div>
+        
+        <h3>Avance de Indexación</h3>
         <div class="data-item">
-            <strong>Avance de Clasificación:</strong>
-            Clasificados: ${data.clasificación.Colección_clasificada} (<span class="clasif-ok">${data.clasificación['%_Colección_clasificada']}%</span>)
-            | No Clasificados: ${data.clasificación.Colección_no_clasificada} (<span class="clasif-pending">${data.clasificación['%_Colección_no_clasificada']}%</span>)
+            Indexados: ${indexacion.Colección_indexada} (<span class="index-ok">${indexacion['%_Colección_indexada']}%</span>)
+            | No Indexados: ${indexacion.Colección_no_indexada} (<span class="index-pending">${indexacion['%_Colección_no_indexada']}%</span>)
+        </div>
+
+        <h3>Avance de Clasificación</h3>
+        <div class="data-item">
+            Clasificados: ${clasificacion.Colección_clasificada} (<span class="clasif-ok">${clasificacion['%_Colección_clasificada']}%</span>)
+            | No Clasificados: ${clasificacion.Colección_no_clasificada} (<span class="clasif-pending">${clasificacion['%_Colección_no_clasificada']}%</span>)
         </div>
     `;
     generalContent.innerHTML = html;
@@ -129,25 +130,24 @@ function renderColeccionGeneral() {
 function renderColeccionOnpe() {
     const data = dashboardData.onpe;
     const onpeContent = document.getElementById('onpe-content');
+    const indexacion = data.indexacion;
+    const clasificacion = data.clasificacion;
 
-    // Total de Registros ONPE
-    let html = `<div class="data-item"><strong>Total Registros ONPE:</strong> ${data.indexacion.Total_registros}</div>`;
+    // Se usa el total de registros de Indexación ya que es el mismo para Clasificación
+    let html = `
+        <h3>Total Registros ONPE</h3>
+        <div class="data-item"><strong>Total Registros ONPE:</strong> ${indexacion.Total_registros}</div>
 
-    // Indexación ONPE
-    html += `
+        <h3>Indexación ONPE</h3>
         <div class="data-item">
-            <strong>Indexación ONPE:</strong>
-            Indexados: ${data.indexacion.Registros_Indexados} (<span class="index-ok">${data.indexacion['%_Indexados']}%</span>)
-            | No Indexados: ${data.indexacion.Registros_No_Indexados} (<span class="index-pending">${data.indexacion['%_No_Indexados']}%</span>)
+            Indexados: ${indexacion.Registros_Indexados} (<span class="index-ok">${indexacion['%_Indexados']}%</span>)
+            | No Indexados: ${indexacion.Registros_No_Indexados} (<span class="index-pending">${indexacion['%_No_Indexados']}%</span>)
         </div>
-    `;
 
-    // Clasificación ONPE
-    html += `
+        <h3>Clasificación ONPE</h3>
         <div class="data-item">
-            <strong>Clasificación ONPE:</strong>
-            Clasificados: ${data.clasificacion.Registros_Clasificados} (<span class="clasif-ok">${data.clasificacion['%_Clasificados']}%</span>)
-            | No Clasificados: ${data.clasificacion.Registros_No_Clasificados} (<span class="clasif-pending">${data.clasificacion['%_No_Clasificados']}%</span>)
+            Clasificados: ${clasificacion.Registros_Clasificados} (<span class="clasif-ok">${clasificacion['%_Clasificados']}%</span>)
+            | No Clasificados: ${clasificacion.Registros_No_Clasificados} (<span class="clasif-pending">${clasificacion['%_No_Clasificados']}%</span>)
         </div>
     `;
     onpeContent.innerHTML = html;
@@ -156,25 +156,24 @@ function renderColeccionOnpe() {
 function renderColeccionNoOnpe() {
     const data = dashboardData.no_onpe;
     const noOnpeContent = document.getElementById('no-onpe-content');
+    const indexacion = data.indexacion;
+    const clasificacion = data.clasificacion;
 
     // Total Registros No ONPE
-    let html = `<div class="data-item"><strong>Total Registros No ONPE:</strong> ${data.indexacion.Total_registros}</div>`;
+    let html = `
+        <h3>Total Registros No ONPE</h3>
+        <div class="data-item"><strong>Total Registros No ONPE:</strong> ${indexacion.Total_registros}</div>
 
-    // Indexación No ONPE
-    html += `
+        <h3>Indexación No ONPE</h3>
         <div class="data-item">
-            <strong>Indexación No ONPE:</strong>
-            Indexados: ${data.indexacion.Registros_Indexados} (<span class="index-ok">${data.indexacion['%_Indexados']}%</span>)
-            | No Indexados: ${data.indexacion.Registros_No_Indexados} (<span class="index-pending">${data.indexacion['%_No_Indexados']}%</span>)
+            Indexados: ${indexacion.Registros_Indexados} (<span class="index-ok">${indexacion['%_Indexados']}%</span>)
+            | No Indexados: ${indexacion.Registros_No_Indexados} (<span class="index-pending">${indexacion['%_No_Indexados']}%</span>)
         </div>
-    `;
 
-    // Clasificación No ONPE
-    html += `
+        <h3>Clasificación No ONPE</h3>
         <div class="data-item">
-            <strong>Clasificación No ONPE:</strong>
-            Clasificados: ${data.clasificacion.Colección_clasificada} (<span class="clasif-ok">${data.clasificacion['%_Colección_clasificada']}%</span>)
-            | No Clasificados: ${data.clasificacion.Colección_no_clasificada} (<span class="clasif-pending">${data.clasificacion['%_Colección_no_clasificada']}%</span>)
+            Clasificados: ${clasificacion.Colección_clasificada} (<span class="clasif-ok">${clasificacion['%_Colección_clasificada']}%</span>)
+            | No Clasificados: ${clasificacion.Colección_no_clasificada} (<span class="clasif-pending">${clasificacion['%_Colección_no_clasificada']}%</span>)
         </div>
     `;
     noOnpeContent.innerHTML = html;
@@ -182,22 +181,28 @@ function renderColeccionNoOnpe() {
 
 function renderOnpeTable() {
     const tableBody = document.querySelector('#onpe-table tbody');
+    if (!tableBody) return; // Salir si el body de la tabla no existe
     const dataArray = dashboardData.onpe.serie_por_ano;
     let html = '';
 
     dataArray.forEach(item => {
+        const percentClasif = item['%_Clasificados'];
+        const percentNoClasif = item['%_No_Clasificados'];
+        const percentIndex = item['%_Indexados'];
+        const percentNoIndex = item['%_No_Indexados'];
+
         html += `
             <tr>
                 <td>${item.Año}</td>
                 <td>${item.Total_Registros_ONPE}</td>
                 <td>${item.Clasificados}</td>
-                <td class="${item['%_Clasificados'] >= 90 ? 'clasif-ok' : 'clasif-pending'}">${item['%_Clasificados']}%</td>
+                <td class="${percentClasif >= 90 ? 'clasif-ok' : 'clasif-pending'}">${percentClasif}%</td>
                 <td>${item.No_Clasificados}</td>
-                <td class="${item['%_No_Clasificados'] <= 10 ? 'clasif-ok' : 'clasif-pending'}">${item['%_No_Clasificados']}%</td>
+                <td class="${percentNoClasif <= 10 ? 'clasif-ok' : 'clasif-pending'}">${percentNoClasif}%</td>
                 <td>${item.Indexados}</td>
-                <td class="${item['%_Indexados'] >= 90 ? 'index-ok' : 'index-pending'}">${item['%_Indexados']}%</td>
+                <td class="${percentIndex >= 90 ? 'index-ok' : 'index-pending'}">${percentIndex}%</td>
                 <td>${item.No_Indexados}</td>
-                <td class="${item['%_No_Indexados'] <= 10 ? 'index-ok' : 'index-pending'}">${item['%_No_Indexados']}%</td>
+                <td class="${percentNoIndex <= 10 ? 'index-ok' : 'index-pending'}">${percentNoIndex}%</td>
             </tr>
         `;
     });
@@ -206,22 +211,28 @@ function renderOnpeTable() {
 
 function renderNoOnpeTable() {
     const tableBody = document.querySelector('#no-onpe-table tbody');
+    if (!tableBody) return; // Salir si el body de la tabla no existe
     const dataArray = dashboardData.no_onpe.instituciones;
     let html = '';
 
     dataArray.forEach(item => {
+        const percentClasif = item['%_Clasificados'];
+        const percentNoClasif = item['%_No_Clasificados'];
+        const percentIndex = item['%_Indexados'];
+        const percentNoIndex = item['%_No_Indexados'];
+        
         html += `
             <tr>
                 <td>${item.Institución}</td>
                 <td>${item.Total_Registros}</td>
                 <td>${item.Clasificados}</td>
-                <td class="${item['%_Clasificados'] >= 90 ? 'clasif-ok' : 'clasif-pending'}">${item['%_Clasificados']}%</td>
+                <td class="${percentClasif >= 90 ? 'clasif-ok' : 'clasif-pending'}">${percentClasif}%</td>
                 <td>${item.No_Clasificados}</td>
-                <td class="${item['%_No_Clasificados'] <= 10 ? 'clasif-ok' : 'clasif-pending'}">${item['%_No_Clasificados']}%</td>
+                <td class="${percentNoClasif <= 10 ? 'clasif-ok' : 'clasif-pending'}">${percentNoClasif}%</td>
                 <td>${item.Indexados}</td>
-                <td class="${item['%_Indexados'] >= 90 ? 'index-ok' : 'index-pending'}">${item['%_Indexados']}%</td>
+                <td class="${percentIndex >= 90 ? 'index-ok' : 'index-pending'}">${percentIndex}%</td>
                 <td>${item.No_Indexados}</td>
-                <td class="${item['%_No_Indexados'] <= 10 ? 'index-ok' : 'index-pending'}">${item['%_No_Indexados']}%</td>
+                <td class="${percentNoIndex <= 10 ? 'index-ok' : 'index-pending'}">${percentNoIndex}%</td>
             </tr>
         `;
     });
