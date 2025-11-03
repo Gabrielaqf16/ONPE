@@ -1,51 +1,192 @@
-<!-- index.html -->
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Estadísticas ONPE</title>
-<link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Estadísticas ONPE</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<header>
-<h1>Estadísticas del Repositorio ONPE</h1>
-</header>
+  <header class="site-header">
+    <div class="container">
+      <h1>Estadísticas del Repositorio ONPE</h1>
+      <p class="subtitle">Resumen de indexación y clasificación — visualizado desde <code>datos.json</code></p>
+    </div>
+  </header>
 
+  <main class="container">
+    <!-- Mensaje de error -->
+    <div id="error" class="error" style="display:none"></div>
 
-<main>
-<section id="coleccion-general" class="card">
-<h2>Colección General</h2>
-<div class="resumen" id="general-info">Cargando datos...</div>
-</section>
+    <!-- Colección general -->
+    <section class="card">
+      <h2>Colección general</h2>
+      <div class="grid-3">
+        <div class="big-card">
+          <div class="label">Total de registros</div>
+          <div id="total-general" class="big-number">—</div>
+        </div>
 
+        <div class="big-card">
+          <div class="label">Avance de Indexación</div>
+          <div class="progress-wrap">
+            <div class="progress-info">
+              <div><strong id="gen-indexados">0</strong> indexados</div>
+              <div class="muted"><span id="gen-index-pct">0%</span></div>
+            </div>
+            <div class="progress">
+              <div id="gen-index-bar" class="progress-bar index"></div>
+            </div>
+            <div class="progress-small">
+              <div class="muted"><strong id="gen-noindex">0</strong> no indexados</div>
+            </div>
+          </div>
+        </div>
 
-<section id="coleccion-onpe" class="card">
-<h2>Colección ONPE</h2>
-<div id="onpe-info">Cargando datos...</div>
-<h3>Serie por Año</h3>
-<table id="onpe-table"></table>
-</section>
+        <div class="big-card">
+          <div class="label">Avance de Clasificación</div>
+          <div class="progress-wrap">
+            <div class="progress-info">
+              <div><strong id="gen-clasificados">0</strong> clasificados</div>
+              <div class="muted"><span id="gen-clas-pct">0%</span></div>
+            </div>
+            <div class="progress">
+              <div id="gen-clas-bar" class="progress-bar classify"></div>
+            </div>
+            <div class="progress-small">
+              <div class="muted"><strong id="gen-noclas">0</strong> no clasificados</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
+    <!-- Colección ONPE -->
+    <section class="card">
+      <h2>Colección ONPE</h2>
 
-<section id="coleccion-no-onpe" class="card">
-<h2>Colección No ONPE</h2>
-<div id="no-onpe-info">Cargando datos...</div>
-<h3>Instituciones</h3>
-<table id="instituciones-table"></table>
-</section>
+      <div class="grid-2">
+        <div class="small-card">
+          <div class="label">Total Registros ONPE</div>
+          <div id="total-onpe" class="big-number">—</div>
+        </div>
 
+        <div class="small-card">
+          <div class="label">Resumen ONPE</div>
+          <div class="muted">Indexación y clasificación</div>
+        </div>
+      </div>
 
-<div id="error-message" class="card" style="display:none; background:#fff4f4; color:#8b0000;
-margin-top:1rem;"> </div>
-</main>
+      <div class="grid-2 mt-12">
+        <div>
+          <div class="label">Indexación ONPE</div>
+          <div class="progress-wrap">
+            <div class="progress-info">
+              <div><strong id="onpe-indexados">0</strong></div>
+              <div class="muted"><span id="onpe-index-pct">0%</span></div>
+            </div>
+            <div class="progress">
+              <div id="onpe-index-bar" class="progress-bar index"></div>
+            </div>
+            <div class="progress-small muted">No indexados: <strong id="onpe-noindex">0</strong></div>
+          </div>
+        </div>
 
+        <div>
+          <div class="label">Clasificación ONPE</div>
+          <div class="progress-wrap">
+            <div class="progress-info">
+              <div><strong id="onpe-clasificados">0</strong></div>
+              <div class="muted"><span id="onpe-clas-pct">0%</span></div>
+            </div>
+            <div class="progress">
+              <div id="onpe-clas-bar" class="progress-bar classify"></div>
+            </div>
+            <div class="progress-small muted">No clasificados: <strong id="onpe-noclas">0</strong></div>
+          </div>
+        </div>
+      </div>
 
-<footer>
-<p>© 2025 Oficina Nacional de Procesos Electorales (ONPE)</p>
-</footer>
+      <h3 class="mt-16">Colección ONPE por años</h3>
+      <div class="table-wrap">
+        <table id="onpe-years" class="striped">
+          <thead>
+            <tr>
+              <th>Año</th><th>Total</th><th>Clasificados</th><th>% Clas.</th><th>No clas.</th><th>% No</th><th>Index.</th><th>% Ind.</th><th>No Ind.</th><th>% No Ind.</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
 
+    <!-- Colección NO ONPE -->
+    <section class="card">
+      <h2>Colección NO ONPE</h2>
 
-<script src="app.js"></script>
+      <div class="grid-2">
+        <div class="small-card">
+          <div class="label">Total Registros No ONPE</div>
+          <div id="total-noonpe" class="big-number">—</div>
+        </div>
+
+        <div class="small-card">
+          <div class="label">Resumen No ONPE</div>
+          <div class="muted">Indexación y clasificación</div>
+        </div>
+      </div>
+
+      <div class="grid-2 mt-12">
+        <div>
+          <div class="label">Indexación No ONPE</div>
+          <div class="progress-wrap">
+            <div class="progress-info">
+              <div><strong id="noonpe-indexados">0</strong></div>
+              <div class="muted"><span id="noonpe-index-pct">0%</span></div>
+            </div>
+            <div class="progress">
+              <div id="noonpe-index-bar" class="progress-bar index"></div>
+            </div>
+            <div class="progress-small muted">No indexados: <strong id="noonpe-noindex">0</strong></div>
+          </div>
+        </div>
+
+        <div>
+          <div class="label">Clasificación No ONPE</div>
+          <div class="progress-wrap">
+            <div class="progress-info">
+              <div><strong id="noonpe-clasificados">0</strong></div>
+              <div class="muted"><span id="noonpe-clas-pct">0%</span></div>
+            </div>
+            <div class="progress">
+              <div id="noonpe-clas-bar" class="progress-bar classify"></div>
+            </div>
+            <div class="progress-small muted">No clasificados: <strong id="noonpe-noclas">0</strong></div>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="mt-16">Colección No ONPE por Instituciones</h3>
+      <div class="table-wrap">
+        <table id="instituciones" class="striped">
+          <thead>
+            <tr>
+              <th>Institución</th><th>Total</th><th>Clasificados</th><th>% Clas.</th><th>No Clas.</th><th>% No</th><th>Index.</th><th>% Ind.</th><th>No Ind.</th><th>% No Ind.</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <small>© 2025 Oficina Nacional de Procesos Electorales (ONPE)</small>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
 </body>
 </html>
