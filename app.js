@@ -1,55 +1,81 @@
-// === CARGA DEL JSON DESDE GITHUB PAGES ===
+// ================================
+// CARGA DEL JSON DESDE GITHUB PAGES
+// ================================
 fetch("https://gabrielaqf16.github.io/ONPE/datos.json")
   .then(response => {
     if (!response.ok) throw new Error("Error al cargar datos.json");
     return response.json();
   })
   .then(datos => {
-    mostrarDatos(datos);
+    mostrarColeccionGeneral(datos);
+    mostrarColeccionONPE(datos);
+    mostrarColeccionNoONPE(datos);
+    mostrarTablaONPE(datos);
+    mostrarTablaNoONPE(datos);
   })
   .catch(error => {
-    console.error("Error al cargar los datos:", error);
-    document.body.innerHTML += `<p style="color:red">No se pudieron cargar los datos del JSON.</p>`;
+    console.error("❌ Error al cargar los datos:", error);
+    document.body.innerHTML += `<p style="color:red; text-align:center;">No se pudieron cargar los datos del JSON.</p>`;
   });
 
-// === FUNCIÓN PRINCIPAL ===
-function mostrarDatos(datos) {
-  // Colección general
+
+// ================================
+// FUNCIÓN: COLECCIÓN GENERAL
+// ================================
+function mostrarColeccionGeneral(datos) {
   const descriptores = datos.descriptores;
   const clasificacion = datos.clasificación;
 
-  document.getElementById("coleccion-general").innerHTML = `
-    <h3>Avance de Indexación</h3>
-    <p>Total registros: ${descriptores.Total_Registros}</p>
-    <p>Colección indexada: ${descriptores.Colección_indexada} (${descriptores["%_Colección_indexada"]}%)</p>
-    <p>No indexada: ${descriptores.Colección_no_indexada} (${descriptores["%_Colección_no_indexada"]}%)</p>
-
-    <h3>Avance de Clasificación</h3>
-    <p>Total registros: ${clasificacion.Total_de_registros}</p>
-    <p>Colección clasificada: ${clasificacion.Colección_clasificada} (${clasificacion["%_Colección_clasificada"]}%)</p>
-    <p>No clasificada: ${clasificacion.Colección_no_clasificada} (${clasificacion["%_Colección_no_clasificada"]}%)</p>
+  const html = `
+    <div class="data-item"><strong>Total de registros:</strong> ${descriptores.Total_Registros}</div>
+    <div class="data-item">
+      <strong>Avance de Indexación:</strong>
+      Indexados: ${descriptores.Colección_indexada} (<span class="index-ok">${descriptores["%_Colección_indexada"]}%</span>)
+      | No Indexados: ${descriptores.Colección_no_indexada} (<span class="index-pending">${descriptores["%_Colección_no_indexada"]}%</span>)
+    </div>
+    <div class="data-item">
+      <strong>Avance de Clasificación:</strong>
+      Clasificados: ${clasificacion.Colección_clasificada} (<span class="clasif-ok">${clasificacion["%_Colección_clasificada"]}%</span>)
+      | No Clasificados: ${clasificacion.Colección_no_clasificada} (<span class="clasif-pending">${clasificacion["%_Colección_no_clasificada"]}%</span>)
+    </div>
   `;
+  document.getElementById("general-content").innerHTML = html;
+}
 
-  // Colección ONPE (indexación y clasificación)
-  const onpe = datos.onpe;
-  const onpeIndex = onpe.indexacion;
-  const onpeClas = onpe.clasificacion;
 
-  document.getElementById("coleccion-onpe").innerHTML = `
-    <h3>Indexación ONPE</h3>
-    <p>Total registros: ${onpeIndex.Total_registros}</p>
-    <p>Indexados: ${onpeIndex.Registros_Indexados} (${onpeIndex["%_Indexados"]}%)</p>
-    <p>No indexados: ${onpeIndex.Registros_No_Indexados} (${onpeIndex["%_No_Indexados"]}%)</p>
+// ================================
+// FUNCIÓN: COLECCIÓN ONPE
+// ================================
+function mostrarColeccionONPE(datos) {
+  const onpeIndex = datos.onpe.indexacion;
+  const onpeClas = datos.onpe.clasificacion;
 
-    <h3>Clasificación ONPE</h3>
-    <p>Total registros: ${onpeClas.Total_registros}</p>
-    <p>Clasificados: ${onpeClas.Registros_Clasificados} (${onpeClas["%_Clasificados"]}%)</p>
-    <p>No clasificados: ${onpeClas.Registros_No_Clasificados} (${onpeClas["%_No_Clasificados"]}%)</p>
+  const html = `
+    <div class="data-item">
+      <strong>Indexación ONPE:</strong>
+      Total: ${onpeIndex.Total_registros} |
+      Indexados: ${onpeIndex.Registros_Indexados} (<span class="index-ok">${onpeIndex["%_Indexados"]}%</span>) |
+      No Indexados: ${onpeIndex.Registros_No_Indexados} (<span class="index-pending">${onpeIndex["%_No_Indexados"]}%</span>)
+    </div>
+
+    <div class="data-item">
+      <strong>Clasificación ONPE:</strong>
+      Total: ${onpeClas.Total_registros} |
+      Clasificados: ${onpeClas.Registros_Clasificados} (<span class="clasif-ok">${onpeClas["%_Clasificados"]}%</span>) |
+      No Clasificados: ${onpeClas.Registros_No_Clasificados} (<span class="clasif-pending">${onpeClas["%_No_Clasificados"]}%</span>)
+    </div>
   `;
+  document.getElementById("onpe-content").innerHTML = html;
+}
 
-  // Serie por año (tabla)
-  const serie = onpe.serie_por_ano;
-  const tablaAños = serie.map(a => `
+
+// ================================
+// FUNCIÓN: TABLA DE SERIE POR AÑO (ONPE)
+// ================================
+function mostrarTablaONPE(datos) {
+  const serie = datos.onpe.serie_por_ano;
+  const tbody = document.querySelector("#onpe-table tbody");
+  tbody.innerHTML = serie.map(a => `
     <tr>
       <td>${a.Año}</td>
       <td>${a.Total_Registros_ONPE}</td>
@@ -63,45 +89,42 @@ function mostrarDatos(datos) {
       <td>${a["%_No_Indexados"]}%</td>
     </tr>
   `).join("");
+}
 
-  document.getElementById("serie-onpe").innerHTML = `
-    <table border="1" cellspacing="0" cellpadding="4">
-      <tr>
-        <th>Año</th>
-        <th>Total</th>
-        <th>Clasificados</th>
-        <th>% Clas.</th>
-        <th>No Clas.</th>
-        <th>% No Clas.</th>
-        <th>Indexados</th>
-        <th>% Index.</th>
-        <th>No Index.</th>
-        <th>% No Index.</th>
-      </tr>
-      ${tablaAños}
-    </table>
+
+// ================================
+// FUNCIÓN: COLECCIÓN NO ONPE
+// ================================
+function mostrarColeccionNoONPE(datos) {
+  const noOnpeIndex = datos.no_onpe.indexacion;
+  const noOnpeClas = datos.no_onpe.clasificacion;
+
+  const html = `
+    <div class="data-item">
+      <strong>Indexación No ONPE:</strong>
+      Total: ${noOnpeIndex.Total_registros} |
+      Indexados: ${noOnpeIndex.Registros_Indexados} (<span class="index-ok">${noOnpeIndex["%_Indexados"]}%</span>) |
+      No Indexados: ${noOnpeIndex.Registros_No_Indexados} (<span class="index-pending">${noOnpeIndex["%_No_Indexados"]}%</span>)
+    </div>
+
+    <div class="data-item">
+      <strong>Clasificación No ONPE:</strong>
+      Total: ${noOnpeClas.Total_de_registros} |
+      Clasificados: ${noOnpeClas.Colección_clasificada} (<span class="clasif-ok">${noOnpeClas["%_Colección_clasificada"]}%</span>) |
+      No Clasificados: ${noOnpeClas.Colección_no_clasificada} (<span class="clasif-pending">${noOnpeClas["%_Colección_no_clasificada"]}%</span>)
+    </div>
   `;
+  document.getElementById("no-onpe-content").innerHTML = html;
+}
 
-  // Colección NO ONPE
-  const noOnpe = datos.no_onpe;
-  const noIndex = noOnpe.indexacion;
-  const noClas = noOnpe.clasificacion;
 
-  document.getElementById("coleccion-no-onpe").innerHTML = `
-    <h3>Indexación No ONPE</h3>
-    <p>Total registros: ${noIndex.Total_registros}</p>
-    <p>Indexados: ${noIndex.Registros_Indexados} (${noIndex["%_Indexados"]}%)</p>
-    <p>No indexados: ${noIndex.Registros_No_Indexados} (${noIndex["%_No_Indexados"]}%)</p>
-
-    <h3>Clasificación No ONPE</h3>
-    <p>Total registros: ${noClas.Total_de_registros}</p>
-    <p>Colección clasificada: ${noClas.Colección_clasificada} (${noClas["%_Colección_clasificada"]}%)</p>
-    <p>No clasificada: ${noClas.Colección_no_clasificada} (${noClas["%_Colección_no_clasificada"]}%)</p>
-  `;
-
-  // Instituciones (tabla)
-  const inst = noOnpe.instituciones;
-  const tablaInst = inst.map(i => `
+// ================================
+// FUNCIÓN: TABLA DE INSTITUCIONES (NO ONPE)
+// ================================
+function mostrarTablaNoONPE(datos) {
+  const instituciones = datos.no_onpe.instituciones;
+  const tbody = document.querySelector("#no-onpe-table tbody");
+  tbody.innerHTML = instituciones.map(i => `
     <tr>
       <td>${i.Institución}</td>
       <td>${i.Total_Registros}</td>
@@ -115,23 +138,4 @@ function mostrarDatos(datos) {
       <td>${i["%_No_Indexados"]}%</td>
     </tr>
   `).join("");
-
-  document.getElementById("instituciones").innerHTML = `
-    <table border="1" cellspacing="0" cellpadding="4">
-      <tr>
-        <th>Institución</th>
-        <th>Total</th>
-        <th>Clasificados</th>
-        <th>% Clas.</th>
-        <th>No Clas.</th>
-        <th>% No Clas.</th>
-        <th>Indexados</th>
-        <th>% Index.</th>
-        <th>No Index.</th>
-        <th>% No Index.</th>
-      </tr>
-      ${tablaInst}
-    </table>
-  `;
 }
-
