@@ -1,54 +1,58 @@
-/* styles.css */
-
-
-table {
-width: 100%;
-border-collapse: collapse;
-margin-top: 1rem;
-font-size: 14px;
+:root{
+  --bg:#f4f7fb;
+  --card:#ffffff;
+  --accent-1:#0b5fb8;
+  --accent-2:#0e76d1;
+  --accent-3:#06b6d4;
+  --muted:#6b7280;
+  --success:#10b981;
+  --danger:#ff5c6c;
 }
 
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;background:var(--bg);color:#0b2540;line-height:1.35}
+.container{max-width:1150px;margin:0 auto;padding:18px}
 
-th, td {
-border: 1px solid #e6eefb;
-padding: 8px;
-text-align: center;
-}
+/* header */
+.site-header{background:linear-gradient(90deg,var(--accent-1),var(--accent-2));color:white;padding:22px 0}
+.site-header h1{margin:0;font-size:26px}
+.subtitle{margin:6px 0 0;font-size:14px;opacity:0.95}
 
+/* cards and layout */
+.card{background:var(--card);border-radius:12px;padding:18px;margin-top:18px;box-shadow:0 8px 22px rgba(11,95,184,0.06)}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.small-card{padding:12px;border-radius:8px;background:linear-gradient(180deg,#f7fbff,#ffffff)}
+.big-card{padding:16px;border-radius:8px;background:#fffefc;display:flex;flex-direction:column;align-items:flex-start;gap:8px}
 
-th {
-background-color: #eaf4ff;
-color: #002b7f;
-}
+/* texts */
+.label{font-weight:600;color:var(--accent-1)}
+.big-number{font-size:28px;font-weight:700;color:#05243e}
+.muted{color:var(--muted);font-size:13px}
+.mt-12{margin-top:12px}
+.mt-16{margin-top:16px}
 
+/* progress */
+.progress-wrap{display:flex;flex-direction:column;gap:8px}
+.progress-info{display:flex;justify-content:space-between;align-items:center}
+.progress{height:18px;background:#eef6ff;border-radius:12px;overflow:hidden;box-shadow:inset 0 -2px 6px rgba(0,0,0,0.03)}
+.progress-bar{height:100%;width:0;transition:width 900ms cubic-bezier(.2,.9,.2,1);display:flex;align-items:center;justify-content:flex-end;padding-right:8px;color:white;font-weight:600}
+.progress-bar.index{background:linear-gradient(90deg,var(--accent-1),var(--accent-2))}
+.progress-bar.classify{background:linear-gradient(90deg,var(--accent-3),#0ea5e9)}
+.progress-small{font-size:13px;color:var(--muted)}
 
-.progress {
-height: 20px;
-background-color: #eef6ff;
-border-radius: 10px;
-overflow: hidden;
-margin-top: 5px;
-}
+/* tables */
+.table-wrap{overflow:auto;margin-top:12px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{padding:8px 10px;border-bottom:1px solid #eef6ff;text-align:center}
+th{background:linear-gradient(90deg,#f3fbff,#eef9ff);color:var(--accent-1);font-weight:700}
+.striped tbody tr:nth-child(odd){background:#fbfdff}
 
+/* error */
+.error{border-left:4px solid var(--danger);padding:10px;background:#fff4f4;border-radius:8px;color:#8b0000;margin-bottom:8px}
 
-.progress-bar {
-height: 100%;
-text-align: right;
-padding-right: 8px;
-color: white;
-font-size: 12px;
-line-height: 20px;
-}
-
-
-.indexado { background: linear-gradient(90deg,#0b5fb8,#0e76d1); }
-.no-indexado { background: linear-gradient(90deg,#ff7b7b,#ff4b5c); }
-
-
-footer {
-text-align: center;
-background-color: #002b7f;
-color: white;
-padding: 10px;
-font-size: 0.9rem;
+/* responsive */
+@media(max-width:960px){
+  .grid-3,.grid-2{grid-template-columns:1fr}
+  .big-number{font-size:22px}
 }
