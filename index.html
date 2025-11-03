@@ -3,110 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard de Avance de Colección</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Dashboard Estadístico</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>Dashboard de Avance de Colección</h1>
-    </header>
-
-    <main>
-        <section id="general-stats">
-            <h2>Colección General 🌎</h2>
-            <div class="stat-cards-container">
-                <div class="stat-card">
-                    <h3>Total de Registros</h3>
-                    <p id="total-registros"></p>
-                </div>
-            </div>
-            
-            <div class="progress-container">
-                <div id="general-indexacion">
-                    <h3>Avance de Indexación</h3>
-                    <div class="progress-bar-container">
-                        <div class="progress-bar" id="progreso-indexacion"></div>
-                        <span class="progress-text" id="texto-indexacion"></span>
-                    </div>
-                </div>
-
-                <div id="general-clasificacion">
-                    <h3>Avance de Clasificación</h3>
-                    <div class="progress-bar-container">
-                        <div class="progress-bar" id="progreso-clasificacion"></div>
-                        <span class="progress-text" id="texto-clasificacion"></span>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
+    <div class="container">
+        <h1>📊 Resumen de la Colección</h1>
         <hr>
 
-        <section id="onpe-stats">
-            <h2>Colección ONPE (Índices Generales) 🗳️</h2>
-            <div class="stat-cards-container">
-                <div class="stat-card">
-                    <h3>Total Registros ONPE</h3>
-                    <p id="total-registros-onpe"></p>
-                </div>
-            </div>
-            
-            <div class="progress-container">
-                <div id="onpe-indexacion">
-                    <h3>Indexación ONPE</h3>
-                    <div class="progress-bar-container">
-                        <div class="progress-bar onpe-bar" id="progreso-onpe-indexacion"></div>
-                        <span class="progress-text" id="texto-onpe-indexacion"></span>
-                    </div>
-                </div>
-
-                <div id="onpe-clasificacion">
-                    <h3>Clasificación ONPE</h3>
-                    <div class="progress-bar-container">
-                        <div class="progress-bar onpe-bar" id="progreso-onpe-clasificacion"></div>
-                        <span class="progress-text" id="texto-onpe-clasificacion"></span>
-                    </div>
-                </div>
-            </div>
-            
-            <h3>Detalle ONPE por Año</h3>
-            <div id="tabla-onpe-ano" class="table-container"></div>
+        <section id="coleccion-general" class="data-section">
+            <h2>Colección General</h2>
+            <div id="general-content"></div>
         </section>
 
-        <hr>
+        ---
 
-        <section id="no-onpe-stats">
-            <h2>Colección NO ONPE 🏛️</h2>
-            <div class="stat-cards-container">
-                <div class="stat-card">
-                    <h3>Total Registros NO ONPE</h3>
-                    <p id="total-registros-no-onpe"></p>
-                </div>
-            </div>
-
-            <div class="progress-container">
-                <div id="no-onpe-indexacion">
-                    <h3>Indexación NO ONPE</h3>
-                    <div class="progress-bar-container">
-                        <div class="progress-bar no-onpe-bar" id="progreso-no-onpe-indexacion"></div>
-                        <span class="progress-text" id="texto-no-onpe-indexacion"></span>
-                    </div>
-                </div>
-
-                <div id="no-onpe-clasificacion">
-                    <h3>Clasificación NO ONPE</h3> 
-                    <div class="progress-bar-container">
-                        <div class="progress-bar no-onpe-bar" id="progreso-no-onpe-clasificacion"></div>
-                        <span class="progress-text" id="texto-no-onpe-clasificacion"></span>
-                    </div>
-                </div>
-            </div>
-
-            <h3>Detalle NO ONPE por Institución</h3>
-            <div id="tabla-no-onpe-institucion" class="table-container"></div>
+        <section id="coleccion-onpe" class="data-section">
+            <h2>Colección ONPE</h2>
+            <div id="onpe-content"></div>
+            <h3>Colección ONPE por Años</h3>
+            <table id="onpe-table">
+                <thead>
+                    <tr>
+                        <th>Año</th>
+                        <th>Total Registros</th>
+                        <th>Clasificados</th>
+                        <th>% Clasif.</th>
+                        <th>No Clasificados</th>
+                        <th>% No Clasif.</th>
+                        <th>Indexados</th>
+                        <th>% Index.</th>
+                        <th>No Indexados</th>
+                        <th>% No Index.</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    </tbody>
+            </table>
         </section>
-    </main>
 
-    <script src="app.js"></script>
+        ---
+
+        <section id="coleccion-no-onpe" class="data-section">
+            <h2>Colección No ONPE</h2>
+            <div id="no-onpe-content"></div>
+            <h3>Colección No ONPE por Instituciones</h3>
+            <table id="no-onpe-table">
+                <thead>
+                    <tr>
+                        <th>Institución</th>
+                        <th>Total Registros</th>
+                        <th>Clasificados</th>
+                        <th>% Clasif.</th>
+                        <th>No Clasificados</th>
+                        <th>% No Clasif.</th>
+                        <th>Indexados</th>
+                        <th>% Index.</th>
+                        <th>No Indexados</th>
+                        <th>% No Index.</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    </tbody>
+            </table>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
