@@ -1,79 +1,48 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Estadístico - Diseño Mejorado</title>
-    <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estadísticas ONPE</title>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <h1>📊 Resumen de la Colección</h1>
-        <hr>
+<header>
+<img src="logo-onpe.png" alt="Logo ONPE" class="logo">
+<h1>Estadísticas del Repositorio ONPE</h1>
+</header>
 
-        <section id="coleccion-general" class="data-section">
-            <h2>Colección General</h2>
-            <div id="general-content">
-                </div>
-        </section>
 
-        ---
+<main>
+<section id="coleccion-general" class="card">
+<h2>Colección General</h2>
+<div class="resumen" id="general-info"></div>
+</section>
 
-        <section id="coleccion-onpe" class="data-section">
-            <h2>Colección ONPE</h2>
-            <div id="onpe-content">
-                </div>
-            
-            <h3>Colección ONPE por Años</h3>
-            <table id="onpe-table">
-                <thead>
-                    <tr>
-                        <th>Año</th>
-                        <th>Total Registros</th>
-                        <th>Clasificados</th>
-                        <th>Avance Clasif.</th>
-                        <th>No Clasificados</th>
-                        <th>Avance Index.</th>
-                        <th>Indexados</th>
-                        <th>% Index.</th>
-                        <th>No Indexados</th>
-                        <th>% No Index.</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    </tbody>
-            </table>
-        </section>
 
-        ---
+<section id="coleccion-onpe" class="card">
+<h2>Colección ONPE</h2>
+<div id="onpe-info"></div>
+<h3>Serie por Año</h3>
+<table id="onpe-table"></table>
+</section>
 
-        <section id="coleccion-no-onpe" class="data-section">
-            <h2>Colección No ONPE</h2>
-            <div id="no-onpe-content">
-                </div>
-            
-            <h3>Colección No ONPE por Instituciones</h3>
-            <table id="no-onpe-table">
-                <thead>
-                    <tr>
-                        <th>Institución</th>
-                        <th>Total Registros</th>
-                        <th>Clasificados</th>
-                        <th>Avance Clasif.</th>
-                        <th>No Clasificados</th>
-                        <th>Avance Index.</th>
-                        <th>Indexados</th>
-                        <th>% Index.</th>
-                        <th>No Indexados</th>
-                        <th>% No Index.</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    </tbody>
-            </table>
-        </section>
-    </div>
 
-    <script src="app.js"></script>
+<section id="coleccion-no-onpe" class="card">
+<h2>Colección No ONPE</h2>
+<div id="no-onpe-info"></div>
+<h3>Instituciones</h3>
+<table id="instituciones-table"></table>
+</section>
+</main>
+
+
+<footer>
+<p>© 2025 Oficina Nacional de Procesos Electorales (ONPE)</p>
+</footer>
+
+
+<script src="app.js"></script>
 </body>
 </html>
