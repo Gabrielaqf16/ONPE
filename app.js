@@ -1,7 +1,7 @@
 // ================================
 // CARGA DEL JSON DESDE GITHUB PAGES
 // ================================
-fetch("https://gabrielaqf16.github.io/ONPE/datos.json")
+fetch('datos.json')
   .then(response => {
     if (!response.ok) throw new Error("Error al cargar datos.json");
     return response.json();
