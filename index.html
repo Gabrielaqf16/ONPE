@@ -9,7 +9,6 @@
 </head>
 <body>
 <header>
-<img src="logo-onpe.png" alt="Logo ONPE" class="logo">
 <h1>Estadísticas del Repositorio ONPE</h1>
 </header>
 
@@ -17,13 +16,13 @@
 <main>
 <section id="coleccion-general" class="card">
 <h2>Colección General</h2>
-<div class="resumen" id="general-info"></div>
+<div class="resumen" id="general-info">Cargando datos...</div>
 </section>
 
 
 <section id="coleccion-onpe" class="card">
 <h2>Colección ONPE</h2>
-<div id="onpe-info"></div>
+<div id="onpe-info">Cargando datos...</div>
 <h3>Serie por Año</h3>
 <table id="onpe-table"></table>
 </section>
@@ -31,10 +30,14 @@
 
 <section id="coleccion-no-onpe" class="card">
 <h2>Colección No ONPE</h2>
-<div id="no-onpe-info"></div>
+<div id="no-onpe-info">Cargando datos...</div>
 <h3>Instituciones</h3>
 <table id="instituciones-table"></table>
 </section>
+
+
+<div id="error-message" class="card" style="display:none; background:#fff4f4; color:#8b0000;
+margin-top:1rem;"> </div>
 </main>
 
 
