@@ -1,130 +1,137 @@
-// app.js
-(async function(){
-  const showError = msg => {
-    const e = document.getElementById('error');
-    e.style.display = 'block';
-    e.textContent = msg;
-  };
+// === CARGA DEL JSON DESDE GITHUB PAGES ===
+fetch("https://gabrielaqf16.github.io/ONPE/datos.json")
+  .then(response => {
+    if (!response.ok) throw new Error("Error al cargar datos.json");
+    return response.json();
+  })
+  .then(datos => {
+    mostrarDatos(datos);
+  })
+  .catch(error => {
+    console.error("Error al cargar los datos:", error);
+    document.body.innerHTML += `<p style="color:red">No se pudieron cargar los datos del JSON.</p>`;
+  });
 
-  try {
-    // fetch datos.json (mismo directorio)
-    const res = await fetch('datos.json', {cache: 'no-store'});
-    if (!res.ok) throw new Error(`HTTP ${res.status} al cargar datos.json`);
-    const datos = await res.json();
+// === FUNCIÓN PRINCIPAL ===
+function mostrarDatos(datos) {
+  // Colección general
+  const descriptores = datos.descriptores;
+  const clasificacion = datos.clasificación;
 
-    // útiles
-    const fmt = n => new Intl.NumberFormat('es-PE').format(n ?? 0);
-    const pct = v => (Math.round((+v + Number.EPSILON) * 100) / 100) + '%';
+  document.getElementById("coleccion-general").innerHTML = `
+    <h3>Avance de Indexación</h3>
+    <p>Total registros: ${descriptores.Total_Registros}</p>
+    <p>Colección indexada: ${descriptores.Colección_indexada} (${descriptores["%_Colección_indexada"]}%)</p>
+    <p>No indexada: ${descriptores.Colección_no_indexada} (${descriptores["%_Colección_no_indexada"]}%)</p>
 
-    // --- Colección general ---
-    const totalGeneral = datos.descriptores?.Total_Registros ?? datos.clasificación?.Total_de_registros ?? 0;
-    document.getElementById('total-general').textContent = fmt(totalGeneral);
+    <h3>Avance de Clasificación</h3>
+    <p>Total registros: ${clasificacion.Total_de_registros}</p>
+    <p>Colección clasificada: ${clasificacion.Colección_clasificada} (${clasificacion["%_Colección_clasificada"]}%)</p>
+    <p>No clasificada: ${clasificacion.Colección_no_clasificada} (${clasificacion["%_Colección_no_clasificada"]}%)</p>
+  `;
 
-    const genIndexados = datos.descriptores?.['Colección_indexada'] ?? 0;
-    const genNoIndex = datos.descriptores?.['Colección_no_indexada'] ?? 0;
-    const genIndexPct = datos.descriptores?.['%_Colección_indexada'] ?? (genIndexados + genNoIndex ? genIndexados/(genIndexados+genNoIndex)*100 : 0);
-    const genNoIndexPct = datos.descriptores?.['%_Colección_no_indexada'] ?? (100 - genIndexPct);
+  // Colección ONPE (indexación y clasificación)
+  const onpe = datos.onpe;
+  const onpeIndex = onpe.indexacion;
+  const onpeClas = onpe.clasificacion;
 
-    document.getElementById('gen-indexados').textContent = fmt(genIndexados);
-    document.getElementById('gen-noindex').textContent = fmt(genNoIndex);
-    document.getElementById('gen-index-pct').textContent = pct(genIndexPct);
-    animateBar('gen-index-bar', genIndexPct);
+  document.getElementById("coleccion-onpe").innerHTML = `
+    <h3>Indexación ONPE</h3>
+    <p>Total registros: ${onpeIndex.Total_registros}</p>
+    <p>Indexados: ${onpeIndex.Registros_Indexados} (${onpeIndex["%_Indexados"]}%)</p>
+    <p>No indexados: ${onpeIndex.Registros_No_Indexados} (${onpeIndex["%_No_Indexados"]}%)</p>
 
-    const genClas = datos.clasificación?.['Colección_clasificada'] ?? 0;
-    const genNoClas = datos.clasificación?.['Colección_no_clasificada'] ?? 0;
-    const genClasPct = datos.clasificación?.['%_Colección_clasificada'] ?? (genClas + genNoClas ? genClas/(genClas+genNoClas)*100 : 0);
-    document.getElementById('gen-clasificados').textContent = fmt(genClas);
-    document.getElementById('gen-noclas').textContent = fmt(genNoClas);
-    document.getElementById('gen-clas-pct').textContent = pct(genClasPct);
-    animateBar('gen-clas-bar', genClasPct);
+    <h3>Clasificación ONPE</h3>
+    <p>Total registros: ${onpeClas.Total_registros}</p>
+    <p>Clasificados: ${onpeClas.Registros_Clasificados} (${onpeClas["%_Clasificados"]}%)</p>
+    <p>No clasificados: ${onpeClas.Registros_No_Clasificados} (${onpeClas["%_No_Clasificados"]}%)</p>
+  `;
 
-    // --- ONPE ---
-    const onpeIndex = datos.onpe?.indexacion ?? {};
-    const onpeClas = datos.onpe?.clasificacion ?? {};
-    const onpeSerie = datos.onpe?.serie_por_ano ?? [];
+  // Serie por año (tabla)
+  const serie = onpe.serie_por_ano;
+  const tablaAños = serie.map(a => `
+    <tr>
+      <td>${a.Año}</td>
+      <td>${a.Total_Registros_ONPE}</td>
+      <td>${a.Clasificados}</td>
+      <td>${a["%_Clasificados"]}%</td>
+      <td>${a.No_Clasificados}</td>
+      <td>${a["%_No_Clasificados"]}%</td>
+      <td>${a.Indexados}</td>
+      <td>${a["%_Indexados"]}%</td>
+      <td>${a.No_Indexados}</td>
+      <td>${a["%_No_Indexados"]}%</td>
+    </tr>
+  `).join("");
 
-    document.getElementById('total-onpe').textContent = fmt(onpeIndex.Total_registros ?? onpeClas.Total_registros ?? 0);
+  document.getElementById("serie-onpe").innerHTML = `
+    <table border="1" cellspacing="0" cellpadding="4">
+      <tr>
+        <th>Año</th>
+        <th>Total</th>
+        <th>Clasificados</th>
+        <th>% Clas.</th>
+        <th>No Clas.</th>
+        <th>% No Clas.</th>
+        <th>Indexados</th>
+        <th>% Index.</th>
+        <th>No Index.</th>
+        <th>% No Index.</th>
+      </tr>
+      ${tablaAños}
+    </table>
+  `;
 
-    document.getElementById('onpe-indexados').textContent = fmt(onpeIndex.Registros_Indexados ?? 0);
-    document.getElementById('onpe-noindex').textContent = fmt(onpeIndex.Registros_No_Indexados ?? 0);
-    document.getElementById('onpe-index-pct').textContent = pct(onpeIndex['%_Indexados'] ?? (onpeIndex.Registros_Indexados && onpeIndex.Registros_No_Indexados ? (onpeIndex.Registros_Indexados/(onpeIndex.Registros_Indexados+onpeIndex.Registros_No_Indexados)*100) : 0));
-    animateBar('onpe-index-bar', onpeIndex['%_Indexados'] ?? 0);
+  // Colección NO ONPE
+  const noOnpe = datos.no_onpe;
+  const noIndex = noOnpe.indexacion;
+  const noClas = noOnpe.clasificacion;
 
-    document.getElementById('onpe-clasificados').textContent = fmt(onpeClas.Registros_Clasificados ?? 0);
-    document.getElementById('onpe-noclas').textContent = fmt(onpeClas.Registros_No_Clasificados ?? 0);
-    document.getElementById('onpe-clas-pct').textContent = pct(onpeClas['%_Clasificados'] ?? 0);
-    animateBar('onpe-clas-bar', onpeClas['%_Clasificados'] ?? 0);
+  document.getElementById("coleccion-no-onpe").innerHTML = `
+    <h3>Indexación No ONPE</h3>
+    <p>Total registros: ${noIndex.Total_registros}</p>
+    <p>Indexados: ${noIndex.Registros_Indexados} (${noIndex["%_Indexados"]}%)</p>
+    <p>No indexados: ${noIndex.Registros_No_Indexados} (${noIndex["%_No_Indexados"]}%)</p>
 
-    // tabla ONPE años
-    const tbodyOnpe = document.querySelector('#onpe-years tbody');
-    tbodyOnpe.innerHTML = '';
-    (onpeSerie || []).forEach(r => {
-      const tr = document.createElement('tr');
-      tr.innerHTML = `
-        <td>${r.Año}</td>
-        <td>${fmt(r.Total_Registros_ONPE)}</td>
-        <td>${fmt(r.Clasificados)}</td>
-        <td>${r['%_Clasificados'] ?? '-' }%</td>
-        <td>${fmt(r.No_Clasificados)}</td>
-        <td>${r['%_No_Clasificados'] ?? '-'}%</td>
-        <td>${fmt(r.Indexados)}</td>
-        <td>${r['%_Indexados'] ?? '-'}%</td>
-        <td>${fmt(r.No_Indexados)}</td>
-        <td>${r['%_No_Indexados'] ?? '-'}%</td>
-      `;
-      tbodyOnpe.appendChild(tr);
-    });
+    <h3>Clasificación No ONPE</h3>
+    <p>Total registros: ${noClas.Total_de_registros}</p>
+    <p>Colección clasificada: ${noClas.Colección_clasificada} (${noClas["%_Colección_clasificada"]}%)</p>
+    <p>No clasificada: ${noClas.Colección_no_clasificada} (${noClas["%_Colección_no_clasificada"]}%)</p>
+  `;
 
-    // --- NO ONPE ---
-    const noOnpeIndex = datos.no_onpe?.indexacion ?? {};
-    const noOnpeClas = datos.no_onpe?.clasificacion ?? {};
-    const noOnpeInst = datos.no_onpe?.instituciones ?? [];
+  // Instituciones (tabla)
+  const inst = noOnpe.instituciones;
+  const tablaInst = inst.map(i => `
+    <tr>
+      <td>${i.Institución}</td>
+      <td>${i.Total_Registros}</td>
+      <td>${i.Clasificados}</td>
+      <td>${i["%_Clasificados"]}%</td>
+      <td>${i.No_Clasificados}</td>
+      <td>${i["%_No_Clasificados"]}%</td>
+      <td>${i.Indexados}</td>
+      <td>${i["%_Indexados"]}%</td>
+      <td>${i.No_Indexados}</td>
+      <td>${i["%_No_Indexados"]}%</td>
+    </tr>
+  `).join("");
 
-    document.getElementById('total-noonpe').textContent = fmt(noOnpeIndex.Total_registros ?? noOnpeClas.Total_de_registros ?? 0);
+  document.getElementById("instituciones").innerHTML = `
+    <table border="1" cellspacing="0" cellpadding="4">
+      <tr>
+        <th>Institución</th>
+        <th>Total</th>
+        <th>Clasificados</th>
+        <th>% Clas.</th>
+        <th>No Clas.</th>
+        <th>% No Clas.</th>
+        <th>Indexados</th>
+        <th>% Index.</th>
+        <th>No Index.</th>
+        <th>% No Index.</th>
+      </tr>
+      ${tablaInst}
+    </table>
+  `;
+}
 
-    document.getElementById('noonpe-indexados').textContent = fmt(noOnpeIndex.Registros_Indexados ?? 0);
-    document.getElementById('noonpe-noindex').textContent = fmt(noOnpeIndex.Registros_No_Indexados ?? 0);
-    document.getElementById('noonpe-index-pct').textContent = pct(noOnpeIndex['%_Indexados'] ?? 0);
-    animateBar('noonpe-index-bar', noOnpeIndex['%_Indexados'] ?? 0);
-
-    document.getElementById('noonpe-clasificados').textContent = fmt(noOnpeClas['Colección_clasificada'] ?? 0);
-    document.getElementById('noonpe-noclas').textContent = fmt(noOnpeClas['Colección_no_clasificada'] ?? 0);
-    document.getElementById('noonpe-clas-pct').textContent = pct(noOnpeClas['%_Colección_clasificada'] ?? 0);
-    animateBar('noonpe-clas-bar', noOnpeClas['%_Colección_clasificada'] ?? 0);
-
-    // tabla instituciones
-    const tbodyInst = document.querySelector('#instituciones tbody');
-    tbodyInst.innerHTML = '';
-    (noOnpeInst || []).forEach(i=>{
-      const tr = document.createElement('tr');
-      tr.innerHTML = `
-        <td>${i.Institución}</td>
-        <td>${fmt(i.Total_Registros)}</td>
-        <td>${fmt(i.Clasificados)}</td>
-        <td>${i['%_Clasificados'] ?? '-'}%</td>
-        <td>${fmt(i.No_Clasificados)}</td>
-        <td>${i['%_No_Clasificados'] ?? '-'}%</td>
-        <td>${fmt(i.Indexados)}</td>
-        <td>${i['%_Indexados'] ?? '-'}%</td>
-        <td>${fmt(i.No_Indexados)}</td>
-        <td>${i['%_No_Indexados'] ?? '-'}%</td>
-      `;
-      tbodyInst.appendChild(tr);
-    });
-
-  } catch (err) {
-    console.error('Error cargando datos.json:', err);
-    showError('No se pudieron cargar los datos desde datos.json. ' +
-      'Si abriste el archivo con doble clic (file:///) el navegador bloquea fetch. ' +
-      'Ejecuta un servidor local (Live Server o python -m http.server) y vuelve a intentarlo. ' +
-      'Mensaje: ' + err.message);
-  }
-
-  // anima ancho de barra (segura con min,max)
-  function animateBar(id, pct){
-    const el = document.getElementById(id);
-    const v = Math.max(0, Math.min(100, Number(pct) || 0));
-    // pequeña pausa para que la transición se vea
-    requestAnimationFrame(()=> setTimeout(()=> el.style.width = v + '%', 50));
-  }
-})();
