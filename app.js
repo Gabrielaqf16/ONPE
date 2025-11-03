@@ -1,203 +1,229 @@
+const dashboardData = {
+    "descriptores": {
+        "Total_Registros": 6259,
+        "Colección_indexada": 4103,
+        "%_Colección_indexada": 65.55,
+        "Colección_no_indexada": 2156,
+        "%_Colección_no_indexada": 34.45
+    },
+
+    "clasificación": {
+        "Total_de_registros": 6259,
+        "Colección_clasificada": 4852,
+        "%_Colección_clasificada": 77.52,
+        "Colección_no_clasificada": 1407,
+        "%_Colección_no_clasificada": 22.48
+    },
+
+    "onpe": {
+        "indexacion": {
+            "Total_registros": 2600,
+            "Registros_Indexados": 2451,
+            "%_Indexados": 94.27,
+            "Registros_No_Indexados": 149,
+            "%_No_Indexados": 5.73
+        },
+        "clasificacion": {
+            "Total_registros": 2600,
+            "Registros_Clasificados": 2446,
+            "%_Clasificados": 94.08,
+            "Registros_No_Clasificados": 154,
+            "%_No_Clasificados": 5.92
+        },
+        "serie_por_ano": [
+            {"Año":1900,"Total_Registros_ONPE":13,"Clasificados":1,"%_Clasificados":7.69,"No_Clasificados":12,"%_No_Clasificados":92.31,"Indexados":1,"%_Indexados":7.69,"No_Indexados":12,"%_No_Indexados":92.31},
+            {"Año":1995,"Total_Registros_ONPE":7,"Clasificados":6,"%_Clasificados":85.71,"No_Clasificados":1,"%_No_Clasificados":14.29,"Indexados":7,"%_Indexados":100.00,"No_Indexados":0,"%_No_Indexados":0.00},
+            {"Año":1996,"Total_Registros_ONPE":3,"Clasificados":3,"%_Clasificados":100.00,"No_Clasificados":0,"%_No_Clasificados":0.00,"Indexados":3,"%_Indexados":100.00,"No_Indexados":0,"%_No_Indexados":0.00},
+            {"Año":1997,"Total_Registros_ONPE":8,"Clasificados":8,"%_Clasificados":100.00,"No_Clasificados":0,"%_No_Clasificados":0.00,"Indexados":8,"%_Indexados":100.00,"No_Indexados":0,"%_No_Indexados":0.00},
+            {"Año":1998,"Total_Registros_ONPE":23,"Clasificados":20,"%_Clasificados":86.96,"No_Clasificados":3,"%_No_Clasificados":13.04,"Indexados":20,"%_Indexados":86.96,"No_Indexados":3,"%_No_Indexados":13.04},
+            {"Año":1999,"Total_Registros_ONPE":15,"Clasificados":12,"%_Clasificados":80.00,"No_Clasificados":3,"%_No_Clasificados":20.00,"Indexados":14,"%_Indexados":93.33,"No_Indexados":1,"%_No_Indexados":6.67},
+            {"Año":2000,"Total_Registros_ONPE":21,"Clasificados":18,"%_Clasificados":85.71,"No_Clasificados":3,"%_No_Clasificados":14.29,"Indexados":21,"%_Indexados":100.00,"No_Indexados":0,"%_No_Indexados":0.00},
+            {"Año":2001,"Total_Registros_ONPE":144,"Clasificados":126,"%_Clasificados":87.50,"No_Clasificados":18,"%_No_Clasificados":12.50,"Indexados":127,"%_Indexados":88.19,"No_Indexados":17,"%_No_Indexados":11.81},
+            {"Año":2002,"Total_Registros_ONPE":132,"Clasificados":116,"%_Clasificados":87.88,"No_Clasificados":16,"%_No_Clasificados":12.12,"Indexados":121,"%_Indexados":91.67,"No_Indexados":11,"%_No_Indexados":8.33},
+            {"Año":2003,"Total_Registros_ONPE":59,"Clasificados":56,"%_Clasificados":94.92,"No_Clasificados":3,"%_No_Clasificados":5.08,"Indexados":56,"%_Indexados":94.92,"No_Indexados":3,"%_No_Indexados":5.08},
+            {"Año":2004,"Total_Registros_ONPE":78,"Clasificados":72,"%_Clasificados":92.31,"No_Clasificados":6,"%_No_Clasificados":7.69,"Indexados":73,"%_Indexados":93.59,"No_Indexados":5,"%_No_Indexados":6.41},
+            {"Año":2005,"Total_Registros_ONPE":290,"Clasificados":278,"%_Clasificados":95.86,"No_Clasificados":12,"%_No_Clasificados":4.14,"Indexados":280,"%_Indexados":96.55,"No_Indexados":10,"%_No_Indexados":3.45},
+            {"Año":2006,"Total_Registros_ONPE":197,"Clasificados":173,"%_Clasificados":87.82,"No_Clasificados":24,"%_No_Clasificados":12.18,"Indexados":173,"%_Indexados":87.82,"No_Indexados":24,"%_No_Indexados":12.18},
+            {"Año":2007,"Total_Registros_ONPE":51,"Clasificados":48,"%_Clasificados":94.12,"No_Clasificados":3,"%_No_Clasificados":5.88,"Indexados":48,"%_Indexados":94.12,"No_Indexados":3,"%_No_Indexados":5.88},
+            {"Año":2008,"Total_Registros_ONPE":48,"Clasificados":44,"%_Clasificados":91.67,"No_Clasificados":4,"%_No_Clasificados":8.33,"Indexados":43,"%_Indexados":89.58,"No_Indexados":5,"%_No_Indexados":10.42},
+            {"Año":2009,"Total_Registros_ONPE":54,"Clasificados":51,"%_Clasificados":94.44,"No_Clasificados":3,"%_No_Clasificados":5.56,"Indexados":51,"%_Indexados":94.44,"No_Indexados":3,"%_No_Indexados":5.56},
+            {"Año":2010,"Total_Registros_ONPE":134,"Clasificados":129,"%_Clasificados":96.27,"No_Clasificados":5,"%_No_Clasificados":3.73,"Indexados":131,"%_Indexados":97.76,"No_Indexados":3,"%_No_Indexados":2.24},
+            {"Año":2011,"Total_Registros_ONPE":95,"Clasificados":90,"%_Clasificados":94.74,"No_Clasificados":5,"%_No_Clasificados":5.26,"Indexados":89,"%_Indexados":93.68,"No_Indexados":6,"%_No_Indexados":6.32},
+            {"Año":2012,"Total_Registros_ONPE":50,"Clasificados":46,"%_Clasificados":92.00,"No_Clasificados":4,"%_No_Clasificados":8.00,"Indexados":46,"%_Indexados":92.00,"No_Indexados":4,"%_No_Indexados":8.00},
+            {"Año":2013,"Total_Registros_ONPE":130,"Clasificados":125,"%_Clasificados":96.15,"No_Clasificados":5,"%_No_Clasificados":3.85,"Indexados":125,"%_Indexados":96.15,"No_Indexados":5,"%_No_Indexados":3.85},
+            {"Año":2014,"Total_Registros_ONPE":158,"Clasificados":154,"%_Clasificados":97.47,"No_Clasificados":4,"%_No_Clasificados":2.53,"Indexados":154,"%_Indexados":97.47,"No_Indexados":4,"%_No_Indexados":2.53},
+            {"Año":2015,"Total_Registros_ONPE":153,"Clasificados":152,"%_Clasificados":99.35,"No_Clasificados":1,"%_No_Clasificados":0.65,"Indexados":151,"%_Indexados":98.69,"No_Indexados":2,"%_No_Indexados":1.31},
+            {"Año":2016,"Total_Registros_ONPE":103,"Clasificados":101,"%_Clasificados":98.06,"No_Clasificados":2,"%_No_Clasificados":1.94,"Indexados":99,"%_Indexados":96.12,"No_Indexados":4,"%_No_Indexados":3.88},
+            {"Año":2017,"Total_Registros_ONPE":66,"Clasificados":64,"%_Clasificados":96.97,"No_Clasificados":2,"%_No_Clasificados":3.03,"Indexados":61,"%_Indexados":92.42,"No_Indexados":5,"%_No_Indexados":7.58},
+            {"Año":2018,"Total_Registros_ONPE":125,"Clasificados":124,"%_Clasificados":99.20,"No_Clasificados":1,"%_No_Clasificados":0.80,"Indexados":124,"%_Indexados":99.20,"No_Indexados":1,"%_No_Indexados":0.80},
+            {"Año":2019,"Total_Registros_ONPE":61,"Clasificados":60,"%_Clasificados":98.36,"No_Clasificados":1,"%_No_Clasificados":1.64,"Indexados":60,"%_Indexados":98.36,"No_Indexados":1,"%_No_Indexados":1.64},
+            {"Año":2020,"Total_Registros_ONPE":22,"Clasificados":20,"%_Clasificados":90.91,"No_Clasificados":2,"%_No_Clasificados":9.09,"Indexados":20,"%_Indexados":90.91,"No_Indexados":2,"%_No_Indexados":9.09},
+            {"Año":2021,"Total_Registros_ONPE":54,"Clasificados":54,"%_Clasificados":100.00,"No_Clasificados":0,"%_No_Clasificados":0.00,"Indexados":54,"%_Indexados":100.00,"No_Indexados":0,"%_No_Indexados":0.00},
+            {"Año":2022,"Total_Registros_ONPE":164,"Clasificados":153,"%_Clasificados":93.29,"No_Clasificados":11,"%_No_Clasificados":6.71,"Indexados":151,"%_Indexados":92.07,"No_Indexados":13,"%_No_Indexados":7.93},
+            {"Año":2023,"Total_Registros_ONPE":32,"Clasificados":32,"%_Clasificados":100.00,"No_Clasificados":0,"%_No_Clasificados":0.00,"Indexados":30,"%_Indexados":93.75,"No_Indexados":2,"%_No_Indexados":6.25},
+            {"Año":2024,"Total_Registros_ONPE":41,"Clasificados":41,"%_Clasificados":100.00,"No_Clasificados":0,"%_No_Clasificados":0.00,"Indexados":41,"%_Indexados":100.00,"No_Indexados":0,"%_No_Indexados":0.00},
+            {"Año":2025,"Total_Registros_ONPE":69,"Clasificados":69,"%_Clasificados":100.00,"No_Clasificados":0,"%_No_Clasificados":0.00,"Indexados":69,"%_Indexados":100.00,"No_Indexados":0,"%_No_Indexados":0.00}
+        ]
+    },
+
+    "no_onpe": {
+        "indexacion": {
+            "Total_registros": 3659,
+            "Registros_Indexados": 1652,
+            "%_Indexados": 45.15,
+            "Registros_No_Indexados": 2007,
+            "%_No_Indexados": 54.85
+        },
+        "clasificacion": {
+            "Total_de_registros": 3659,
+            "Colección_clasificada": 2406,
+            "%_Colección_clasificada": 65.76,
+            "Colección_no_clasificada": 1253,
+            "%_Colección_no_clasificada": 34.24
+        },
+        "instituciones": [
+            {"Institución": "Otras instituciones", "Total_Registros": 3318, "Clasificados": 2082, "%_Clasificados": 62.75, "No_Clasificados": 1236, "%_No_Clasificados": 37.25, "Indexados": 1336, "%_Indexados": 40.27, "No_Indexados": 1982, "%_No_Indexados": 59.73},
+            {"Institución": "Jurado Nacional de Elecciones (JNE)", "Total_Registros": 260, "Clasificados": 248, "%_Clasificados": 95.38, "No_Clasificados": 12, "%_No_Clasificados": 4.62, "Indexados": 241, "%_Indexados": 92.69, "No_Indexados": 19, "%_No_Indexados": 7.31},
+            {"Institución": "RENIEC (Registro Nacional de Identificación y Estado Civil)", "Total_Registros": 81, "Clasificados": 76, "%_Clasificados": 93.83, "No_Clasificados": 5, "%_No_Clasificados": 6.17, "Indexados": 75, "%_Indexados": 92.59, "No_Indexados": 6, "%_No_Indexados": 7.41}
+        ]
+    }
+};
+
 document.addEventListener('DOMContentLoaded', () => {
-    fetch('datos.json')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`Error al cargar datos.json: ${response.statusText}`);
-            }
-            return response.json();
-        })
-        .then(data => {
-            renderGeneralStats(data);
-            renderOnpeStats(data);
-            renderNoOnpeStats(data);
-        })
-        .catch(error => console.error('Error:', error));
+    renderColeccionGeneral();
+    renderColeccionOnpe();
+    renderColeccionNoOnpe();
+    renderOnpeTable();
+    renderNoOnpeTable();
 });
 
-/**
- * Función auxiliar para actualizar la barra de progreso
- * @param {string} barId - ID del elemento .progress-bar
- * @param {string} textId - ID del elemento .progress-text
- * @param {number} percentage - Porcentaje a mostrar (0-100)
- * @param {number} total - Total de registros
- * @param {number} done - Registros completados
- */
-function updateProgressBar(barId, textId, percentage, total, done) {
-    const bar = document.getElementById(barId);
-    const text = document.getElementById(textId);
-    
-    // Asegurar que el porcentaje sea un número válido y dentro de 0-100
-    const validPercentage = Math.max(0, Math.min(100, percentage));
+// --- Funciones de Renderizado ---
 
-    bar.style.width = `${validPercentage}%`;
-    text.textContent = `${done.toLocaleString()} / ${total.toLocaleString()} (${validPercentage.toFixed(2)}%)`;
-}
-
-// --- 1. Colección General ---
-function renderGeneralStats(data) {
-    const total = data.descriptores.Total_Registros;
+function renderColeccionGeneral() {
+    const data = dashboardData;
+    const generalContent = document.getElementById('general-content');
 
     // Total de Registros
-    document.getElementById('total-registros').textContent = total.toLocaleString();
+    let html = `<div class="data-item"><strong>Total de Registros:</strong> ${data.descriptores.Total_Registros}</div>`;
 
-    // Indexación General
-    const indexacionPct = data.descriptores['%_Colección_indexada'];
-    const indexacionDone = data.descriptores.Colección_indexada;
-    updateProgressBar(
-        'progreso-indexacion', 
-        'texto-indexacion', 
-        indexacionPct, 
-        total, 
-        indexacionDone
-    );
-
-    // Clasificación General
-    const clasificacionPct = data.clasificación['%_Colección_clasificada'];
-    const clasificacionDone = data.clasificación.Colección_clasificada;
-    updateProgressBar(
-        'progreso-clasificacion', 
-        'texto-clasificacion', 
-        clasificacionPct, 
-        total, 
-        clasificacionDone
-    );
-}
-
-// --- 2. Colección ONPE ---
-function renderOnpeStats(data) {
-    const onpe = data.onpe;
-    const totalOnpe = onpe.indexacion.Total_registros; 
-    
-    document.getElementById('total-registros-onpe').textContent = totalOnpe.toLocaleString();
-
-    // Indexación ONPE
-    const indexacionPct = onpe.indexacion['%_Indexados'];
-    const indexacionDone = onpe.indexacion.Registros_Indexados;
-    updateProgressBar(
-        'progreso-onpe-indexacion', 
-        'texto-onpe-indexacion', 
-        indexacionPct, 
-        totalOnpe, 
-        indexacionDone
-    );
-
-    // Clasificación ONPE
-    const clasificacionPct = onpe.clasificacion['%_Clasificados'];
-    const clasificacionDone = onpe.clasificacion.Registros_Clasificados;
-    updateProgressBar(
-        'progreso-onpe-clasificacion', 
-        'texto-onpe-clasificacion', 
-        clasificacionPct, 
-        totalOnpe, 
-        clasificacionDone
-    );
-
-    // Tabla ONPE por Año
-    const tableContainer = document.getElementById('tabla-onpe-ano');
-    tableContainer.innerHTML = createOnpeYearTable(onpe.serie_por_ano);
-}
-
-function createOnpeYearTable(series) {
-    let html = '<table>';
-    html += `<thead><tr>
-                <th>Año</th>
-                <th>Total Registros</th>
-                <th>Clasificados (%)</th>
-                <th>Avance Clasificación</th>
-                <th>Indexados (%)</th>
-                <th>Avance Indexación</th>
-             </tr></thead><tbody>`;
-
-    series.forEach(item => {
-        html += `<tr>
-                    <td>${item.Año}</td>
-                    <td>${item.Total_Registros_ONPE}</td>
-                    <td>${item['%_Clasificados'].toFixed(2)}% (${item.Clasificados})</td>
-                    <td>${createTableProgressBar(item['%_Clasificados'], '#007bff')}</td>
-                    <td>${item['%_Indexados'].toFixed(2)}% (${item.Indexados})</td>
-                    <td>${createTableProgressBar(item['%_Indexados'], '#007bff')}</td>
-                 </tr>`;
-    });
-
-    html += '</tbody></table>';
-    return html;
-}
-
-// --- 3. Colección NO ONPE ---
-function renderNoOnpeStats(data) {
-    const noOnpe = data.no_onpe;
-    const totalNoOnpe = noOnpe.indexacion.Total_registros; // Usamos el total de indexación de NO ONPE
-
-    document.getElementById('total-registros-no-onpe').textContent = totalNoOnpe.toLocaleString();
-    
-    // Indexación NO ONPE
-    const indexacionPct = noOnpe.indexacion['%_Indexados'];
-    const indexacionDone = noOnpe.indexacion.Registros_Indexados;
-    updateProgressBar(
-        'progreso-no-onpe-indexacion', 
-        'texto-no-onpe-indexacion', 
-        indexacionPct, 
-        totalNoOnpe, 
-        indexacionDone
-    );
-
-    // Clasificación NO ONPE (Usamos el cálculo basado en el total NO ONPE del JSON)
-    const clasificacionPct = (noOnpe.clasificacion.Colección_clasificada / totalNoOnpe) * 100;
-    const clasificacionDone = noOnpe.clasificacion.Colección_clasificada;
-    
-    // NOTA: El JSON de 'no_onpe.clasificacion' tiene datos de la colección general (6259), 
-    // pero para ser lógicamente 'Clasificación NO ONPE', calculamos con los totales de NO ONPE.
-    // Si quisieras usar los valores directos del JSON, el total sería 6259, lo cual no es correcto para NO ONPE.
-    // Asumimos que los totales clasificados (2406) son los correctos de NO ONPE (suma de las instituciones).
-    // Corregimos la lógica: la suma de clasificados en instituciones es 2406. El total NO ONPE es 3659.
-    const clasifNoOnpeTotal = noOnpe.instituciones.reduce((sum, inst) => sum + inst.Clasificados, 0); // 2082 + 248 + 76 = 2406
-    const clasifNoOnpePct = (clasifNoOnpeTotal / totalNoOnpe) * 100; // 2406 / 3659 = 65.76% (coincide con el dato)
-    
-    updateProgressBar(
-        'progreso-no-onpe-clasificacion', 
-        'texto-no-onpe-clasificacion', 
-        clasifNoOnpePct, 
-        totalNoOnpe, 
-        clasifNoOnpeTotal
-    );
-
-    // Tabla NO ONPE por Institución
-    const tableContainer = document.getElementById('tabla-no-onpe-institucion');
-    tableContainer.innerHTML = createNoOnpeInstitucionTable(noOnpe.instituciones);
-}
-
-function createNoOnpeInstitucionTable(instituciones) {
-    let html = '<table>';
-    html += `<thead><tr>
-                <th>Institución</th>
-                <th>Total Registros</th>
-                <th>Clasificados (%)</th>
-                <th>Avance Clasificación</th>
-                <th>Indexados (%)</th>
-                <th>Avance Indexación</th>
-             </tr></thead><tbody>`;
-
-    instituciones.forEach(item => {
-        html += `<tr>
-                    <td>${item.Institución}</td>
-                    <td>${item.Total_Registros}</td>
-                    <td>${item['%_Clasificados'].toFixed(2)}% (${item.Clasificados})</td>
-                    <td>${createTableProgressBar(item['%_Clasificados'], '#ffc107')}</td>
-                    <td>${item['%_Indexados'].toFixed(2)}% (${item.Indexados})</td>
-                    <td>${createTableProgressBar(item['%_Indexados'], '#ffc107')}</td>
-                 </tr>`;
-    });
-
-    html += '</tbody></table>';
-    return html;
-}
-
-// --- Función auxiliar para la barra de progreso dentro de la tabla ---
-function createTableProgressBar(percentage, color) {
-    const validPercentage = Math.max(0, Math.min(100, percentage));
-    return `
-        <div class="table-progress-bar-container">
-            <div class="table-progress-bar" style="width: ${validPercentage}%; background-color: ${color};"></div>
+    // Avance de Indexación
+    html += `
+        <div class="data-item">
+            <strong>Avance de Indexación:</strong>
+            Indexados: ${data.descriptores.Colección_indexada} (<span class="index-ok">${data.descriptores['%_Colección_indexada']}%</span>)
+            | No Indexados: ${data.descriptores.Colección_no_indexada} (<span class="index-pending">${data.descriptores['%_Colección_no_indexada']}%</span>)
         </div>
     `;
+
+    // Avance de Clasificación
+    html += `
+        <div class="data-item">
+            <strong>Avance de Clasificación:</strong>
+            Clasificados: ${data.clasificación.Colección_clasificada} (<span class="clasif-ok">${data.clasificación['%_Colección_clasificada']}%</span>)
+            | No Clasificados: ${data.clasificación.Colección_no_clasificada} (<span class="clasif-pending">${data.clasificación['%_Colección_no_clasificada']}%</span>)
+        </div>
+    `;
+    generalContent.innerHTML = html;
+}
+
+function renderColeccionOnpe() {
+    const data = dashboardData.onpe;
+    const onpeContent = document.getElementById('onpe-content');
+
+    // Total de Registros ONPE
+    let html = `<div class="data-item"><strong>Total Registros ONPE:</strong> ${data.indexacion.Total_registros}</div>`;
+
+    // Indexación ONPE
+    html += `
+        <div class="data-item">
+            <strong>Indexación ONPE:</strong>
+            Indexados: ${data.indexacion.Registros_Indexados} (<span class="index-ok">${data.indexacion['%_Indexados']}%</span>)
+            | No Indexados: ${data.indexacion.Registros_No_Indexados} (<span class="index-pending">${data.indexacion['%_No_Indexados']}%</span>)
+        </div>
+    `;
+
+    // Clasificación ONPE
+    html += `
+        <div class="data-item">
+            <strong>Clasificación ONPE:</strong>
+            Clasificados: ${data.clasificacion.Registros_Clasificados} (<span class="clasif-ok">${data.clasificacion['%_Clasificados']}%</span>)
+            | No Clasificados: ${data.clasificacion.Registros_No_Clasificados} (<span class="clasif-pending">${data.clasificacion['%_No_Clasificados']}%</span>)
+        </div>
+    `;
+    onpeContent.innerHTML = html;
+}
+
+function renderColeccionNoOnpe() {
+    const data = dashboardData.no_onpe;
+    const noOnpeContent = document.getElementById('no-onpe-content');
+
+    // Total Registros No ONPE
+    let html = `<div class="data-item"><strong>Total Registros No ONPE:</strong> ${data.indexacion.Total_registros}</div>`;
+
+    // Indexación No ONPE
+    html += `
+        <div class="data-item">
+            <strong>Indexación No ONPE:</strong>
+            Indexados: ${data.indexacion.Registros_Indexados} (<span class="index-ok">${data.indexacion['%_Indexados']}%</span>)
+            | No Indexados: ${data.indexacion.Registros_No_Indexados} (<span class="index-pending">${data.indexacion['%_No_Indexados']}%</span>)
+        </div>
+    `;
+
+    // Clasificación No ONPE
+    html += `
+        <div class="data-item">
+            <strong>Clasificación No ONPE:</strong>
+            Clasificados: ${data.clasificacion.Colección_clasificada} (<span class="clasif-ok">${data.clasificacion['%_Colección_clasificada']}%</span>)
+            | No Clasificados: ${data.clasificacion.Colección_no_clasificada} (<span class="clasif-pending">${data.clasificacion['%_Colección_no_clasificada']}%</span>)
+        </div>
+    `;
+    noOnpeContent.innerHTML = html;
+}
+
+function renderOnpeTable() {
+    const tableBody = document.querySelector('#onpe-table tbody');
+    const dataArray = dashboardData.onpe.serie_por_ano;
+    let html = '';
+
+    dataArray.forEach(item => {
+        html += `
+            <tr>
+                <td>${item.Año}</td>
+                <td>${item.Total_Registros_ONPE}</td>
+                <td>${item.Clasificados}</td>
+                <td class="${item['%_Clasificados'] >= 90 ? 'clasif-ok' : 'clasif-pending'}">${item['%_Clasificados']}%</td>
+                <td>${item.No_Clasificados}</td>
+                <td class="${item['%_No_Clasificados'] <= 10 ? 'clasif-ok' : 'clasif-pending'}">${item['%_No_Clasificados']}%</td>
+                <td>${item.Indexados}</td>
+                <td class="${item['%_Indexados'] >= 90 ? 'index-ok' : 'index-pending'}">${item['%_Indexados']}%</td>
+                <td>${item.No_Indexados}</td>
+                <td class="${item['%_No_Indexados'] <= 10 ? 'index-ok' : 'index-pending'}">${item['%_No_Indexados']}%</td>
+            </tr>
+        `;
+    });
+    tableBody.innerHTML = html;
+}
+
+function renderNoOnpeTable() {
+    const tableBody = document.querySelector('#no-onpe-table tbody');
+    const dataArray = dashboardData.no_onpe.instituciones;
+    let html = '';
+
+    dataArray.forEach(item => {
+        html += `
+            <tr>
+                <td>${item.Institución}</td>
+                <td>${item.Total_Registros}</td>
+                <td>${item.Clasificados}</td>
+                <td class="${item['%_Clasificados'] >= 90 ? 'clasif-ok' : 'clasif-pending'}">${item['%_Clasificados']}%</td>
+                <td>${item.No_Clasificados}</td>
+                <td class="${item['%_No_Clasificados'] <= 10 ? 'clasif-ok' : 'clasif-pending'}">${item['%_No_Clasificados']}%</td>
+                <td>${item.Indexados}</td>
+                <td class="${item['%_Indexados'] >= 90 ? 'index-ok' : 'index-pending'}">${item['%_Indexados']}%</td>
+                <td>${item.No_Indexados}</td>
+                <td class="${item['%_No_Indexados'] <= 10 ? 'index-ok' : 'index-pending'}">${item['%_No_Indexados']}%</td>
+            </tr>
+        `;
+    });
+    tableBody.innerHTML = html;
 }
