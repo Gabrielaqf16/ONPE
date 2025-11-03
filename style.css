@@ -1,89 +1,130 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f7f6;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #e9eff6; /* Fondo azul muy claro */
     color: #333;
     line-height: 1.6;
     margin: 0;
-    padding: 20px;
+    padding: 30px;
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    background: #fff;
+    background: #ffffff;
     padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
-    color: #007bff;
+    color: #004a8d; /* Azul oscuro corporativo */
     text-align: center;
     margin-bottom: 20px;
+    border-bottom: 3px solid #004a8d;
+    padding-bottom: 15px;
 }
 
 h2 {
-    border-bottom: 2px solid #007bff;
-    padding-bottom: 10px;
-    margin-top: 20px;
-    color: #333;
+    color: #007bff;
+    margin-top: 35px;
+    padding-bottom: 5px;
 }
 
 h3 {
-    color: #555;
-    margin-top: 30px;
+    color: #4a4a4a;
+    margin-top: 20px;
 }
 
+.data-section {
+    padding: 20px 0;
+}
+
+/* --- Tarjetas de Resumen (Data Items) --- */
 .data-item {
-    background: #e9ecef;
-    padding: 15px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    border-left: 5px solid #007bff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f0f7ff; /* Fondo claro para las tarjetas */
+    padding: 18px;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    border-left: 6px solid #007bff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .data-item strong {
     color: #000;
+    font-size: 1.1em;
 }
 
-/* Estilos de Tabla */
+/* --- Estilos de Tablas --- */
 table {
     width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-collapse: separate; /* Permite bordes redondeados */
+    border-spacing: 0;
+    margin-top: 25px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden; /* Oculta el overflow para los bordes redondeados */
 }
 
 th, td {
-    border: 1px solid #ddd;
-    padding: 12px;
+    border: none;
+    padding: 14px 8px;
     text-align: center;
+    border-bottom: 1px solid #e0e0e0;
 }
 
 th {
-    background-color: #007bff;
+    background-color: #004a8d;
     color: white;
     font-weight: bold;
     text-transform: uppercase;
-    font-size: 0.9em;
+    font-size: 0.85em;
+    position: sticky;
+    top: 0;
 }
 
 tr:nth-child(even) {
-    background-color: #f2f2f2;
+    background-color: #f7f7f7;
 }
 
 tr:hover {
-    background-color: #e2f0ff;
+    background-color: #e6f3ff;
 }
 
-/* Colores para porcentajes */
-.index-ok, .clasif-ok { color: #28a745; font-weight: bold; }
-.index-pending, .clasif-pending { color: #dc3545; font-weight: bold; }
+/* --- Figuras de Avance (Barras de Progreso) --- */
+.progress-container {
+    background-color: #e9ecef;
+    border-radius: 5px;
+    height: 10px;
+    width: 100px; /* Ancho fijo para las barras */
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    border-radius: 5px;
+    transition: width 0.5s ease;
+    text-align: right;
+}
+
+.bg-index {
+    background-color: #28a745; /* Verde para Indexado (OK) */
+}
+
+.bg-clasif {
+    background-color: #ffc107; /* Amarillo/Naranja para Clasificado (Advertencia) */
+}
+
+/* Para resaltar porcentajes */
+.text-ok { color: #28a745; font-weight: bold; }
+.text-pending { color: #dc3545; font-weight: bold; }
 
 /* Separador horizontal */
 hr {
     border: 0;
-    height: 1px;
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #007bff, rgba(0, 0, 0, 0));
+    height: 2px;
+    background-color: #ccc;
     margin: 40px 0;
 }
