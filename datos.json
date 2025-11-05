@@ -76,13 +76,13 @@
     },
     "clasificacion": {
       "Total_de_registros": 3660,
-      "Colección_clasificada": 2408,
-      "%_Colección_clasificada": 65.79,
-      "Colección_no_clasificada": 1252,
-      "%_Colección_no_clasificada": 34.21
+      "Colección_clasificada": 1963,
+      "%_Colección_clasificada": 53.63,
+      "Colección_no_clasificada": 1697,
+      "%_Colección_no_clasificada": 46.37
     },
     "instituciones": [
-      {"Institución": "Otras instituciones", "Total_Registros": 3318, "Clasificados": 2083, "%_Clasificados": 62.78, "No_Clasificados": 1235, "%_No_Clasificados": 37.22, "Indexados": 1338, "%_Indexados": 40.33, "No_Indexados": 1980, "%_No_Indexados": 59.67},
+      {"Institución": "Otras instituciones", "Total_Registros": 3318, "Clasificados": 1638, "%_Clasificados": 49.37, "No_Clasificados": 1680, "%_No_Clasificados": 50.63, "Indexados": 1338, "%_Indexados": 40.33, "No_Indexados": 1980, "%_No_Indexados": 59.67},
       {"Institución": "Jurado Nacional de Elecciones (JNE)", "Total_Registros": 261, "Clasificados": 249, "%_Clasificados": 95.40, "No_Clasificados": 12, "%_No_Clasificados": 4.60, "Indexados": 242, "%_Indexados": 92.72, "No_Indexados": 19, "%_No_Indexados": 7.28},
       {"Institución": "Registro Nacional de Identificación y Estado Civil (RENIEC)", "Total_Registros": 81, "Clasificados": 76, "%_Clasificados": 93.83, "No_Clasificados": 5, "%_No_Clasificados": 6.17, "Indexados": 75, "%_Indexados": 92.59, "No_Indexados": 6, "%_No_Indexados": 7.41}
     ]
