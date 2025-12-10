@@ -1,117 +1,36 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Dashboard Estadístico - ONPE</title>
-
-  <!-- Chart.js CDN -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard Colecciones</title>
   <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1>📊 Resumen Estadístico de la Colección - ONPE</h1>
-      <p class="subtitle">(Periodo: Datos hasta el 05 de diciembre de 2025)</p>
-    </header>
+  <header><h1>Dashboard de Colecciones</h1></header>
 
-    <main>
-      <!-- Sección general -->
-      <section class="card-row">
-        <div class="card">
-          <h2>Colección General</h2>
-          <div id="general-content" class="card-body"></div>
-        </div>
+  <main>
+    <section class="card" id="completa">
+      <h2>1. Colección Completa</h2>
+      <div id="tabla-completa"></div>
+      <canvas id="grafico-completa"></canvas>
+    </section>
 
-        <div class="card">
-          <h2>Gráfico General</h2>
-          <canvas id="generalChart" aria-label="Gráfico general"></canvas>
-        </div>
-      </section>
+    <section class="card" id="onpe">
+      <h2>2. Colección ONPE</h2>
+      <div id="tabla-onpe"></div>
+      <canvas id="grafico-onpe"></canvas>
+    </section>
 
-      <!-- ONPE -->
-      <section class="card-row">
-        <div class="card">
-          <h2>ONPE - Resumen</h2>
-          <div id="onpe-content" class="card-body"></div>
-        </div>
-
-        <div class="card">
-          <h2>ONPE - % Clasificados por Año</h2>
-          <canvas id="onpeLineChart" aria-label="Linea ONPE"></canvas>
-        </div>
-      </section>
-
-      <!-- No ONPE -->
-      <section class="card-row">
-        <div class="card">
-          <h2>No ONPE - Resumen</h2>
-          <div id="no-onpe-content" class="card-body"></div>
-        </div>
-
-        <div class="card">
-          <h2>Instituciones - Indexación</h2>
-          <canvas id="institucionesBarChart" aria-label="Instituciones"></canvas>
-        </div>
-      </section>
-
-      <!-- Tablas -->
-      <section>
-        <div class="card fullwidth">
-          <h2>Tabla: Serie ONPE por Año</h2>
-          <div class="table-wrap">
-            <table id="onpe-table">
-              <thead>
-                <tr>
-                  <th>Año</th>
-                  <th>Total Registros</th>
-                  <th>Clasificados</th>
-                  <th>% Clasif.</th>
-                  <th>No Clasificados</th>
-                  <th>% No Clasif.</th>
-                  <th>Indexados</th>
-                  <th>% Index.</th>
-                  <th>No Indexados</th>
-                  <th>% No Index.</th>
-                </tr>
-              </thead>
-              <tbody></tbody>
-            </table>
-          </div>
-        </div>
-
-        <div class="card fullwidth">
-          <h2>Tabla: Instituciones (No ONPE)</h2>
-          <div class="table-wrap">
-            <table id="no-onpe-table">
-              <thead>
-                <tr>
-                  <th>Institución</th>
-                  <th>Total Registros</th>
-                  <th>Clasificados</th>
-                  <th>% Clasif.</th>
-                  <th>No Clasificados</th>
-                  <th>% No Clasif.</th>
-                  <th>Indexados</th>
-                  <th>% Index.</th>
-                  <th>No Indexados</th>
-                  <th>% No Index.</th>
-                </tr>
-              </thead>
-              <tbody></tbody>
-            </table>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer>
-      <p>Fuente: Sistema Bibliográfico KOHA - SGDIE (2025)</p>
-    </footer>
-  </div>
+    <section class="card" id="no-onpe">
+      <h2>3. Colección NO ONPE</h2>
+      <div id="tabla-noonpe"></div>
+      <canvas id="grafico-noonpe"></canvas>
+    </section>
+  </main>
 
   <script src="app1.js"></script>
 </body>
 </html>
+
