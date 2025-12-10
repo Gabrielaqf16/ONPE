@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Estadístico</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>📊 Resumen Estadístico de la Colección - ONPE</h1>
+        <h1>(Periodo: Datos hasta el 05 de diciembre de 2025)</h1>
+        <hr>
+
+        <section id="coleccion-general" class="data-section">
+            <h2>Colección General</h2>
+            <div id="general-content"></div>
+        </section>
+
+        <hr>
+
+        <section id="coleccion-onpe" class="data-section">
+            <h2>Colección ONPE</h2>
+            <div id="onpe-content"></div>
+            <h3>Colección ONPE por Años</h3>
+            <table id="onpe-table">
+                <thead>
+                    <tr>
+                        <th>Año</th>
+                        <th>Total Registros</th>
+                        <th>Clasificados</th>
+                        <th>% Clasif.</th>
+                        <th>No Clasificados</th>
+                        <th>% No Clasif.</th>
+                        <th>Indexados</th>
+                        <th>% Index.</th>
+                        <th>No Indexados</th>
+                        <th>% No Index.</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </section>
+
+        <hr>
+
+        <section id="coleccion-no-onpe" class="data-section">
+            <h2>Colección NO ONPE</h2>
+            <div id="no-onpe-content"></div>
+            <h3>Colección NO ONPE por Instituciones</h3>
+            <table id="no-onpe-table">
+                <thead>
+                    <tr>
+                        <th>Institución</th>
+                        <th>Total Registros</th>
+                        <th>Clasificados</th>
+                        <th>% Clasif.</th>
+                        <th>No Clasificados</th>
+                        <th>% No Clasif.</th>
+                        <th>Indexados</th>
+                        <th>% Index.</th>
+                        <th>No Indexados</th>
+                        <th>% No Index.</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </section>
+    </div>
+<footer>
+        <p>Fuente: Sistema Bibliográfico KOHA - SGDIE (2025)</p>
+</footer>
+    <script src="app1.js"></script>
+</body>
+</html>
