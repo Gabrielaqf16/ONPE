@@ -1,75 +1,117 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Estadístico</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dashboard Estadístico - ONPE</title>
+
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <div class="container">
-        <h1>📊 Resumen Estadístico de la Colección - ONPE</h1>
-        <h1>(Periodo: Datos hasta el 05 de diciembre de 2025)</h1>
-        <hr>
+  <div class="container">
+    <header>
+      <h1>📊 Resumen Estadístico de la Colección - ONPE</h1>
+      <p class="subtitle">(Periodo: Datos hasta el 05 de diciembre de 2025)</p>
+    </header>
 
-        <section id="coleccion-general" class="data-section">
-            <h2>Colección General</h2>
-            <div id="general-content"></div>
-        </section>
+    <main>
+      <!-- Sección general -->
+      <section class="card-row">
+        <div class="card">
+          <h2>Colección General</h2>
+          <div id="general-content" class="card-body"></div>
+        </div>
 
-        <hr>
+        <div class="card">
+          <h2>Gráfico General</h2>
+          <canvas id="generalChart" aria-label="Gráfico general"></canvas>
+        </div>
+      </section>
 
-        <section id="coleccion-onpe" class="data-section">
-            <h2>Colección ONPE</h2>
-            <div id="onpe-content"></div>
-            <h3>Colección ONPE por Años</h3>
+      <!-- ONPE -->
+      <section class="card-row">
+        <div class="card">
+          <h2>ONPE - Resumen</h2>
+          <div id="onpe-content" class="card-body"></div>
+        </div>
+
+        <div class="card">
+          <h2>ONPE - % Clasificados por Año</h2>
+          <canvas id="onpeLineChart" aria-label="Linea ONPE"></canvas>
+        </div>
+      </section>
+
+      <!-- No ONPE -->
+      <section class="card-row">
+        <div class="card">
+          <h2>No ONPE - Resumen</h2>
+          <div id="no-onpe-content" class="card-body"></div>
+        </div>
+
+        <div class="card">
+          <h2>Instituciones - Indexación</h2>
+          <canvas id="institucionesBarChart" aria-label="Instituciones"></canvas>
+        </div>
+      </section>
+
+      <!-- Tablas -->
+      <section>
+        <div class="card fullwidth">
+          <h2>Tabla: Serie ONPE por Año</h2>
+          <div class="table-wrap">
             <table id="onpe-table">
-                <thead>
-                    <tr>
-                        <th>Año</th>
-                        <th>Total Registros</th>
-                        <th>Clasificados</th>
-                        <th>% Clasif.</th>
-                        <th>No Clasificados</th>
-                        <th>% No Clasif.</th>
-                        <th>Indexados</th>
-                        <th>% Index.</th>
-                        <th>No Indexados</th>
-                        <th>% No Index.</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
+              <thead>
+                <tr>
+                  <th>Año</th>
+                  <th>Total Registros</th>
+                  <th>Clasificados</th>
+                  <th>% Clasif.</th>
+                  <th>No Clasificados</th>
+                  <th>% No Clasif.</th>
+                  <th>Indexados</th>
+                  <th>% Index.</th>
+                  <th>No Indexados</th>
+                  <th>% No Index.</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
             </table>
-        </section>
+          </div>
+        </div>
 
-        <hr>
-
-        <section id="coleccion-no-onpe" class="data-section">
-            <h2>Colección NO ONPE</h2>
-            <div id="no-onpe-content"></div>
-            <h3>Colección NO ONPE por Instituciones</h3>
+        <div class="card fullwidth">
+          <h2>Tabla: Instituciones (No ONPE)</h2>
+          <div class="table-wrap">
             <table id="no-onpe-table">
-                <thead>
-                    <tr>
-                        <th>Institución</th>
-                        <th>Total Registros</th>
-                        <th>Clasificados</th>
-                        <th>% Clasif.</th>
-                        <th>No Clasificados</th>
-                        <th>% No Clasif.</th>
-                        <th>Indexados</th>
-                        <th>% Index.</th>
-                        <th>No Indexados</th>
-                        <th>% No Index.</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
+              <thead>
+                <tr>
+                  <th>Institución</th>
+                  <th>Total Registros</th>
+                  <th>Clasificados</th>
+                  <th>% Clasif.</th>
+                  <th>No Clasificados</th>
+                  <th>% No Clasif.</th>
+                  <th>Indexados</th>
+                  <th>% Index.</th>
+                  <th>No Indexados</th>
+                  <th>% No Index.</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
             </table>
-        </section>
-    </div>
-<footer>
-        <p>Fuente: Sistema Bibliográfico KOHA - SGDIE (2025)</p>
-</footer>
-    <script src="app1.js"></script>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>Fuente: Sistema Bibliográfico KOHA - SGDIE (2025)</p>
+    </footer>
+  </div>
+
+  <script src="app1.js"></script>
 </body>
 </html>
