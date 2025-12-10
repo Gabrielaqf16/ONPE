@@ -1,0 +1,98 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f7f6;
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #007bff;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h2 {
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 10px;
+    margin-top: 20px;
+    color: #333;
+}
+
+h3 {
+    color: #555;
+    margin-top: 30px;
+}
+
+.data-item {
+    background: #e9ecef;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border-left: 5px solid #007bff;
+}
+
+.data-item strong {
+    color: #000;
+}
+
+/* --- Tablas --- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+}
+
+th {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9em;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #e2f0ff;
+}
+
+/* --- Colores --- */
+.index-ok, .clasif-ok { color: #28a745; font-weight: bold; }
+.index-pending, .clasif-pending { color: #dc3545; font-weight: bold; }
+
+/* --- Separadores --- */
+hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #007bff, rgba(0, 0, 0, 0));
+    margin: 40px 0;
+}
+
+footer {
+  text-align: center;
+  font-size: 14px;
+  color: #555;
+  margin-top: 40px;
+  padding: 15px 0;
+  border-top: 1px solid #ddd;
+}
