@@ -3,7 +3,7 @@
 // ================================
 fetch("datos1.json")
   .then(response => {
-    if (!response.ok) throw new Error("Error al cargar datos.json");
+    if (!response.ok) throw new Error("Error al cargar datos1.json");
     return response.json();
   })
   .then(datos => {
