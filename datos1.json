@@ -1,5 +1,5 @@
 {
-   "clasificación": {
+   "clasificacion": {
     "Total_de_registros": 6282,
     "Colección_clasificada": 4630,
     "%_Colección_clasificada": 73.70,
@@ -7,7 +7,7 @@
     "%_Colección_no_clasificada": 26.30
   },
 
-    "Indización": {
+    "Indexacion": {
     "Total_Registros": 6282,
     "Colección_indexada": 4265,
     "%_Colección_indexada": 67.89,
@@ -16,7 +16,7 @@
   },
 
   "onpe": {
-    "clasificación": {
+    "clasificacion": {
       "Total_registros": 2603,
       "Registros_Clasificados": 2449,
       "%_Clasificados": 94.08,
